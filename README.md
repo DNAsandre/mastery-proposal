@@ -30,14 +30,15 @@ The words, the order and the structure are signed off by Juan. **Amberly takes o
 
 1. A tracker fixed at the top: the eight stages, a small plane that tilts up stage by stage (0° to 45°), and what each stage means for the developer.
 2. A plain statement of the developer's pain, the property headline, and "What it removes".
-3. The four forces for that stage: thrust (momentum from one integrated solution), lift (marketing power and visual awareness), drag (friction, the old route), weight (steering it all alone).
-4. The lift and thrust report: a four-zone graph where the plane starts in the centre at pre-flight, moves forward on thrust at take-off, climbs, launches and cruises high. A lift meter and a thrust lever sit beside it.
-5. The marketing funnel strip (capture, nurture, close), with this stage's steps lit and floating.
-6. The services for the stage, each with an icon, and a grey box for real work.
-7. Stage extras: the control tower, lead radar and buyer pyramid (climb), buyer portal, nurture path, buyer radar and launch race (launch), campaign sprints, Prop Manager and momentum events (cruise), the 3D build and one record (navigation).
-8. What the stage adds to business value (never with numbers).
-9. AI organises, people fly the plane, you see everything on live dashboards.
-10. One sentence summary, one open question, and the next stage.
+3. Six cards drawn from the developer consultation: an opening line, the reality today, what changes, what we do, who does it, and your first step.
+4. The four forces for that stage: thrust (momentum from one integrated solution), lift (marketing power and visual awareness), drag (friction, the old route), weight (steering it all alone).
+5. The lift and thrust report: a four-zone graph where the plane starts in the centre at pre-flight, moves forward on thrust at take-off, climbs, launches and cruises high, with a trail of the stages so far. A small lift meter and thrust lever sit beside it.
+6. The marketing funnel (capture, nurture, close). On pre-flight the whole funnel is shown dotted and tagged "Flight plan", because it is planned there. On every other stage that stage's steps are lit and float.
+7. The services for the stage, each with an icon, and a grey box for real work.
+8. Stage extras: control tower, lead radar and buyer pyramid (climb); buyer portal, nurture path, buyer radar and launch race (launch); four three-month campaign phases, Prop Manager and momentum events (cruise); the 3D build, planning and approvals and one record (navigation).
+9. What the stage adds to business value (never with numbers).
+10. AI organises, people fly the plane, and you stay in control: everything on live dashboards, your data stays yours.
+11. One sentence summary, one open question, and the next stage, added when the developer is ready.
 
 ## Rules that are locked
 
@@ -56,4 +57,5 @@ The words, the order and the structure are signed off by Juan. **Amberly takes o
 - Grey dashed boxes are waiting for real work: Metadology 3D walkthroughs, brand and website work, and Prop Launch, Prop Manager and Super Systems screens.
 - Every "sample" in a screen (countdown, unit board, radar dots) is made up to show how it works.
 - The icons are simple placeholders. Swap them for Metadology's own style.
+- Never show copywriting terms to the reader (hook, pain, promise and so on). The cards use reader-facing labels on purpose.
 - Open red flags are listed on the Notes page.

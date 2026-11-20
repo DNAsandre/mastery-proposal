@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Prop Launch: build the queue, then the race</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&amp;family=Hanken+Grotesk:wght@400;500;600&amp;family=DM+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0;background:#0C1626}
+a{color:#D6A64A}a:hover{color:#E6BD6C}
+.wrap{max-width:1200px;margin:0 auto;padding:0 56px;box-sizing:border-box}
+.ph{border:1.5px dashed rgba(90,106,131,.5);border-radius:12px;display:flex;align-items:center;justify-content:center;text-align:center;font-family:"DM Mono",monospace;font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:#5A6A83;padding:16px;box-sizing:border-box}
+.sweep{transform-box:view-box;transform-origin:100px 100px;animation:sweep 4.2s linear infinite}
+@keyframes sweep{to{transform:rotate(360deg)}}
+.ping{transform-box:fill-box;transform-origin:center;animation:ping 2.6s ease-out infinite}
+@keyframes ping{from{transform:scale(1);opacity:.9}to{transform:scale(3);opacity:0}}
+.live{animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.lit{animation:litfloat 2.6s ease-in-out infinite;box-shadow:0 10px 0 -4px #D6A64A}
+@keyframes litfloat{0%,100%{transform:translateY(-6px)}50%{transform:translateY(-14px)}}
+.fly{animation:flyin 3.2s ease-in-out infinite}
+@keyframes flyin{0%,100%{transform:translate(0,0)}50%{transform:translate(4px,-4px)}}
+@media (prefers-reduced-motion:reduce){.sweep,.ping,.live,.lit,.fly{animation:none}}
+@media (max-width:820px){.wrap{padding:0 16px}.g2,.g3,.g4,.g6{grid-template-columns:1fr !important}.hxl{font-size:38px !important}.hm{font-size:32px !important}.sec{padding:64px 0 !important}}
+</style>
+</helmet>
+<div style="font-family: 'Hanken Grotesk', Arial, sans-serif; color: #F2EDE2; background: #0C1626; min-height: 100vh;">
+<div style="background: #E4DCCB; color: #0C1626;">
+<div class="wrap" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; padding-top: 10px; padding-bottom: 10px;">
+<span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 12px;">Mock-up of the structure · Amberly finishes the look</span>
+<a href="Notes.dc.html" style="background: #0C1626; color: #F2EDE2; text-decoration: none; font-weight: 600; font-size: 14px; border-radius: 999px; padding: 12px 18px;">Notes and red flags</a>
+</div>
+</div>
+<header style="position: sticky; top: 0; z-index: 30; background: #0C1626; border-bottom: 1.5px solid #1D2C44;">
+<div class="wrap" style="display: flex; flex-wrap: wrap; align-items: center; gap: 20px; padding-top: 10px; padding-bottom: 10px;">
+<a href="Main.dc.html"><img src="/_blob/d2b7509f808bfab0319b785bd9941150" alt="metadology home" style="width: 124px; height: auto; display: block;"></a>
+<nav aria-label="Flight tracker" style="flex: 1 1 0; display: flex; min-width: 0;">
+<sc-for list="{{track}}" as="t" hint-placeholder-count="8">
+<a href="{{t.file}}" style="flex: 1 1 0; min-width: 0; text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 4px;">
+<span style="height: 30px; display: flex; align-items: flex-end;">
+<sc-if value="{{t.here}}" hint-placeholder-val="{{false}}"><svg width="40" height="30" viewBox="-40 -24 80 48" aria-hidden="true"><g transform="rotate(-{{t.ang}}) scale(.5)"><path d="M-65 0 L-45 -3 L-55 -23 L-43 -23 L-22 -6 L20 -7 L34 -12 L48 -10 Q68 -8 76 0 Q76 5 59 7 L8 9 L-9 22 L-27 22 L-15 8 L-47 6 L-65 0Z" fill="#D6A64A"></path></g></svg></sc-if>
+</span>
+<span style="display: flex; align-items: center; width: 100%;"><span style="flex: 1; height: 2px; background: {{t.lineL}};"></span><span style="width: 10px; height: 10px; border-radius: 50%; background: {{t.dot}}; flex: none;"></span><span style="flex: 1; height: 2px; background: {{t.lineR}};"></span></span>
+<span style="font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: {{t.fg}}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%;">{{t.name}}</span>
+<span style="font-size: 11px; line-height: 1.2; color: {{t.fg}}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%;">{{t.meaning}}</span>
+</a>
+</sc-for>
+</nav>
+<span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 11px; color: #E4DCCB; flex: 1 0 100%;">{{readout}}</span>
+</div>
+</header>
+
+<section class="sec" style="position: relative; overflow: hidden; padding: 96px 0;">
+<div style="position: absolute; right: -220px; bottom: -300px; width: 760px; height: 760px; border-radius: 50%; background: radial-gradient(closest-side, rgba(214,166,74,.2), rgba(214,166,74,0));" aria-hidden="true"></div>
+<div class="wrap" style="position: relative; display: flex; flex-direction: column; gap: 22px;">
+<div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 13px; color: #E4DCCB;">Stage 04 of 08</span><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 11px; color: #0C1626; background: #D6A64A; border-radius: 999px; padding: 5px 10px;">Launch</span></div>
+<p style="margin: 0; font-family: Jost, sans-serif; font-size: 22px; line-height: 1.35; color: #E4DCCB; max-width: 820px;">Most agent time goes on buyers who were never going to buy.</p>
+<h1 class="hxl" style="margin: 0; font-family: Jost, sans-serif; font-weight: 500; font-size: 60px; line-height: 1.04; letter-spacing: -0.025em; max-width: 1000px;">Prop Launch: build the queue, then run the launch race.</h1>
+<p style="margin: 0; font-size: 19px; line-height: 1.55; color: #A9B3C4; max-width: 760px;">Ready buyers lined up before sales open. Then scarcity and urgency do the selling.</p>
+<p style="margin: 0; font-size: 17px; line-height: 1.5; color: #F2EDE2; max-width: 760px; border-left: 3px solid #D6A64A; padding-left: 14px;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 11px; color: #D6A64A; display: block; margin-bottom: 4px;">What it removes</span>Spreadsheets and double-selling. Live stock, and every reservation in view.</p>
+</div>
+</section>
+
+<section class="sec" style="background: #F2EDE2; color: #0C1626; padding: 88px 0;">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 28px;">
+<div style="display: flex; flex-direction: column; gap: 10px;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 12px; color: #5A6A83;">Thrust · Lift · Drag · Weight</span><h2 class="hm" style="margin: 0; font-family: Jost, sans-serif; font-weight: 500; font-size: 44px; line-height: 1.07; letter-spacing: -0.02em;">What speeds this stage up, and what holds it back.</h2></div>
+<div class="g4" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px;">
+<sc-for list="{{forces}}" as="f" hint-placeholder-count="4">
+<div style="background: {{f.bg}}; color: {{f.fg}}; border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 10px; min-height: 190px;">
+<svg width="40" height="40" viewBox="0 0 44 44" aria-hidden="true"><g transform="rotate({{f.rot}} 22 22)"><path d="M6 22 H36 M27 13 L37 22 L27 31" fill="none" stroke="{{f.arrow}}" stroke-width="3"></path></g></svg>
+<span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 11px;">{{f.name}}</span>
+<span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 20px; line-height: 1.25;">{{f.line}}</span>
+</div>
+</sc-for>
+</div>
+</div>
+</section>
+
+<section class="sec" style="padding: 88px 0;">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 24px;">
+<div style="display: flex; flex-direction: column; gap: 10px; max-width: 900px;">
+<span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 13px; color: #E4DCCB;">Lift and thrust report · Stage 04 · Launch</span>
+<h2 class="hm" style="margin: 0; font-family: Jost, sans-serif; font-weight: 500; font-size: 44px; line-height: 1.07; letter-spacing: -0.02em; font-size: 36px;">Where this stage moves your development.</h2>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: stretch;">
+<svg viewBox="0 0 700 510" style="flex: 1 1 420px; max-width: 620px; height: auto; display: block;" role="img" aria-label="Four zones: lift and thrust is selling fast at the right price, lift and drag is strong brand but slow sales, weight and thrust is busy but margins sinking, weight and drag is stuck on the ground. After Launch the plane sits further forward and higher, toward selling fast at the right price.">
+<rect width="700" height="510" rx="16" fill="#0F1B2F"></rect>
+<rect x="40" y="40" width="310" height="215" fill="#E4DCCB" opacity=".08"></rect>
+<rect x="350" y="40" width="310" height="215" fill="#D6A64A" opacity=".24"></rect>
+<rect x="40" y="255" width="310" height="215" fill="#060D18" opacity=".7"></rect>
+<rect x="350" y="255" width="310" height="215" fill="#060D18" opacity=".45"></rect>
+<path d="M40 255H660 M350 40V470" stroke="#5A6A83" stroke-width="1.5"></path>
+<g font-family="DM Mono, monospace" font-size="13" letter-spacing="1" fill="#E4DCCB">
+<text x="56" y="66">LIFT + DRAG</text><text x="56" y="88" font-family="Hanken Grotesk, sans-serif" font-size="17" letter-spacing="0" fill="#F2EDE2">Strong brand, slow sales</text>
+<text x="56" y="430">WEIGHT + DRAG</text><text x="56" y="452" font-family="Hanken Grotesk, sans-serif" font-size="17" letter-spacing="0" fill="#F2EDE2">Stuck on the ground</text>
+<text x="644" y="430" text-anchor="end">WEIGHT + THRUST</text><text x="644" y="452" text-anchor="end" font-family="Hanken Grotesk, sans-serif" font-size="17" letter-spacing="0" fill="#F2EDE2">Busy, but margins sinking</text>
+</g>
+<text x="370" y="66" font-family="DM Mono, monospace" font-size="13" letter-spacing="1" fill="#E4DCCB">LIFT + THRUST</text><text x="370" y="88" font-family="Hanken Grotesk, sans-serif" font-size="17" fill="#F2EDE2">Selling fast, at the right price</text>
+<g font-family="DM Mono, monospace" font-size="12" letter-spacing="1" fill="#A9B3C4"><text x="350" y="26" text-anchor="middle">LIFT ↑</text><text x="350" y="496" text-anchor="middle">WEIGHT ↓</text><text x="48" y="246">← DRAG</text><text x="652" y="246" text-anchor="end">THRUST →</text></g>
+<g opacity=".3" transform="translate(190 390) rotate(20) scale(.36)"><path d="M-65 0 L-45 -3 L-55 -23 L-43 -23 L-22 -6 L20 -7 L34 -12 L48 -10 Q68 -8 76 0 Q76 5 59 7 L8 9 L-9 22 L-27 22 L-15 8 L-47 6 L-65 0Z" fill="#F2EDE2"></path></g>
+<text x="150" y="425" font-family="DM Mono, monospace" font-size="11" fill="#A9B3C4">THE OLD ROUTE</text>
+<path d="M350 255 L455 255 L520 198 L565 152" fill="none" stroke="#D6A64A" stroke-width="2" stroke-dasharray="5 6" opacity=".7"></path>
+<circle cx="350" cy="255" r="4" fill="#D6A64A" opacity=".55"></circle><circle cx="455" cy="255" r="4" fill="#D6A64A" opacity=".55"></circle><circle cx="520" cy="198" r="4" fill="#D6A64A" opacity=".55"></circle>
+<circle cx="565" cy="152" r="34" fill="#D6A64A" opacity=".18"></circle>
+<g transform="translate(565 152)"><g class="fly"><g transform="rotate(-30) scale(.48)"><path d="M-65 0 L-45 -3 L-55 -23 L-43 -23 L-22 -6 L20 -7 L34 -12 L48 -10 Q68 -8 76 0 Q76 5 59 7 L8 9 L-9 22 L-27 22 L-15 8 L-47 6 L-65 0Z" fill="#F2EDE2" stroke="#D6A64A" stroke-width="2"></path></g></g></g>
+<text x="565" y="198" text-anchor="middle" font-family="DM Mono, monospace" font-size="11" fill="#D6A64A">AFTER LAUNCH</text>
+</svg>
+<div style="flex: 0 0 auto; display: flex; gap: 12px;">
+<div style="background: #13223A; border: 1.5px solid #1D2C44; border-radius: 14px; padding: 12px; display: flex; flex-direction: column; align-items: center; gap: 6px; width: 120px;">
+<span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 10px; color: #E4DCCB;">Lift</span>
+<svg viewBox="0 0 128 285" style="width: 84px; height: auto; display: block;" role="img" aria-label="Lift gauge, nose up">
+<rect x="73" y="40" width="18" height="200" rx="4" fill="#1D2C44"></rect><rect x="73" y="80" width="18" height="160" rx="4" fill="#D6A64A" opacity=".85"></rect>
+<path d="M4 140H96" stroke="#F2EDE2" stroke-dasharray="3 3" opacity=".5"></path><text x="100" y="144" font-size="10" fill="#E4DCCB" font-family="DM Mono, monospace">LEVEL</text>
+<g transform="translate(40 80)"><path d="M-30 0H33" stroke="#F2EDE2" stroke-width="2"></path><g transform="rotate(-27) scale(.36)"><path d="M-65 0 L-45 -3 L-55 -23 L-43 -23 L-22 -6 L20 -7 L34 -12 L48 -10 Q68 -8 76 0 Q76 5 59 7 L8 9 L-9 22 L-27 22 L-15 8 L-47 6 L-65 0Z" fill="#F2EDE2"></path></g></g>
+<text x="64" y="274" fill="#D6A64A" font-size="18" font-family="DM Mono, monospace" text-anchor="middle">NOSE UP</text>
+</svg>
+<span style="font-size: 12px; line-height: 1.4; color: #A9B3C4; text-align: center;">Marketing power</span>
+</div>
+<div style="background: #13223A; border: 1.5px solid #1D2C44; border-radius: 14px; padding: 12px; display: flex; flex-direction: column; align-items: center; gap: 6px; width: 120px;">
+<span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 10px; color: #E4DCCB;">Thrust</span>
+<svg viewBox="0 0 128 285" style="width: 84px; height: auto; display: block;" role="img" aria-label="Thrust lever, open">
+<text x="64" y="24" text-anchor="middle" fill="#E4DCCB" font-size="10" font-family="DM Mono, monospace">FULL THRUST</text>
+<rect x="81" y="40" width="18" height="200" rx="4" fill="#1D2C44"></rect><rect x="81" y="64" width="18" height="176" rx="4" fill="#D6A64A" opacity=".85"></rect>
+<rect x="35" y="37" width="17" height="207" rx="8" fill="#060D18" stroke="#5A6A83" stroke-width="2"></rect>
+<path d="M18 244L43 64" stroke="#A9B3C4" stroke-width="9" stroke-linecap="round"></path><circle cx="18" cy="244" r="9" fill="#22344F" stroke="#A9B3C4"></circle>
+<g transform="translate(43 64)"><rect x="-25" y="-11" width="51" height="23" rx="8" fill="#13223A" stroke="#F2EDE2" stroke-width="2"></rect><path d="M-19 5H19" stroke="#D6A64A" stroke-width="3"></path></g>
+<text x="64" y="274" text-anchor="middle" fill="#D6A64A" font-size="18" font-family="DM Mono, monospace">OPEN</text>
+</svg>
+<span style="font-size: 12px; line-height: 1.4; color: #A9B3C4; text-align: center;">Integrated momentum</span>
+</div>
+</div>
+</div>
+<span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 11px; color: #A9B3C4;">Illustration · each development is measured on its own numbers</span>
+</div>
+</section>
+<section class="sec" style="background: #F2EDE2; color: #0C1626; padding: 0 0 88px;">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 18px;">
+<div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 12px; color: #5A6A83;">The marketing funnel · capture, nurture, close</span><span style="font-size: 15px; color: #5A6A83;">Launch runs the pre-launch and launch campaigns, nurtures and creates opportunities.</span></div>
+<div class="g4" style="display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 6px;">
+<div class="" style="background: #E4DCCB; color: #5A6A83; border-radius: 12px; padding: 12px 10px; display: flex; flex-direction: column; gap: 6px; min-height: 84px;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 9px; color: #5A6A83;">Capture</span><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 15px; line-height: 1.2;">Lead generation</span></div>
+<div class="lit" style="background: #0C1626; color: #F2EDE2; border-radius: 12px; padding: 12px 10px; display: flex; flex-direction: column; gap: 6px; min-height: 84px;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 9px; color: #D6A64A;">Capture</span><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 15px; line-height: 1.2;">Pre-launch campaign</span></div>
+<div class="" style="background: #E4DCCB; color: #5A6A83; border-radius: 12px; padding: 12px 10px; display: flex; flex-direction: column; gap: 6px; min-height: 84px;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 9px; color: #5A6A83;">Capture</span><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 15px; line-height: 1.2;">Lead filtering</span></div>
+<div class="" style="background: #E4DCCB; color: #5A6A83; border-radius: 12px; padding: 12px 10px; display: flex; flex-direction: column; gap: 6px; min-height: 84px;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 9px; color: #5A6A83;">Capture</span><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 15px; line-height: 1.2;">Lead qualification</span></div>
+<div class="lit" style="background: #0C1626; color: #F2EDE2; border-radius: 12px; padding: 12px 10px; display: flex; flex-direction: column; gap: 6px; min-height: 84px;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 9px; color: #D6A64A;">Nurture</span><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 15px; line-height: 1.2;">Lead nurture</span></div>
+<div class="lit" style="background: #0C1626; color: #F2EDE2; border-radius: 12px; padding: 12px 10px; display: flex; flex-direction: column; gap: 6px; min-height: 84px;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 9px; color: #D6A64A;">Nurture</span><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 15px; line-height: 1.2;">Opportunities</span></div>
+<div class="" style="background: #E4DCCB; color: #5A6A83; border-radius: 12px; padding: 12px 10px; display: flex; flex-direction: column; gap: 6px; min-height: 84px;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 9px; color: #5A6A83;">Close</span><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 15px; line-height: 1.2;">Close</span></div>
+<div class="" style="background: #E4DCCB; color: #5A6A83; border-radius: 12px; padding: 12px 10px; display: flex; flex-direction: column; gap: 6px; min-height: 84px;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 9px; color: #5A6A83;">Close</span><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 15px; line-height: 1.2;">After sales</span></div>
+</div>
+</div>
+</section>
+
+<section class="sec" style="background: #F2EDE2; color: #0C1626; padding: 0 0 96px;">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 28px;">
+<h2 class="hm" style="margin: 0; font-family: Jost, sans-serif; font-weight: 500; font-size: 44px; line-height: 1.07; letter-spacing: -0.02em;">What our team does at this stage.</h2>
+<div class="g3" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px;">
+<div style="border: 1.5px solid #5A6A83; border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 10px;"><span style="width: 44px; height: 44px; border-radius: 12px; background: #0C1626; display: flex; align-items: center; justify-content: center; flex: none;" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D6A64A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c4 2 6 6 6 10l-3 3H9l-3-3c0-4 2-8 6-10z"></path><circle cx="12" cy="10" r="2"></circle><path d="M9 16l-2 5 5-3 5 3-2-5"></path></svg></span><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 22px;">Pre-launch and launch campaigns</span><span style="font-size: 15px; line-height: 1.5; color: #5A6A83;">Interest built before day one, then released.</span></div>
+<div style="border: 1.5px solid #5A6A83; border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 10px;"><span style="width: 44px; height: 44px; border-radius: 12px; background: #0C1626; display: flex; align-items: center; justify-content: center; flex: none;" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D6A64A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"></circle><path d="M11 12l9-9M17 6l3 3M15 8l2 2"></path></svg></span><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 22px;">Buyer portal</span><span style="font-size: 15px; line-height: 1.5; color: #5A6A83;">A login for your development.</span></div>
+<div style="border: 1.5px solid #5A6A83; border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 10px;"><span style="width: 44px; height: 44px; border-radius: 12px; background: #0C1626; display: flex; align-items: center; justify-content: center; flex: none;" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D6A64A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"></circle><path d="M3 20a6 6 0 0 1 12 0"></path><path d="M16 11l2 2 4-4"></path></svg></span><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 22px;">Buyer profiles</span><span style="font-size: 15px; line-height: 1.5; color: #5A6A83;">Pre-qualification and details done by the buyer.</span></div>
+<div style="border: 1.5px solid #5A6A83; border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 10px;"><span style="width: 44px; height: 44px; border-radius: 12px; background: #0C1626; display: flex; align-items: center; justify-content: center; flex: none;" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D6A64A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12V4h8l10 10-8 8z"></path><circle cx="7.5" cy="8.5" r="1.5"></circle></svg></span><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 22px;">Tracking and tagging</span><span style="font-size: 15px; line-height: 1.5; color: #5A6A83;">Every buyer gets what interests them.</span></div>
+<div style="border: 1.5px solid #5A6A83; border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 10px;"><span style="width: 44px; height: 44px; border-radius: 12px; background: #0C1626; display: flex; align-items: center; justify-content: center; flex: none;" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D6A64A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg></span><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 22px;">Lead nurture</span><span style="font-size: 15px; line-height: 1.5; color: #5A6A83;">Eight-by-eight emails, automations, WhatsApp and SMS.</span></div>
+<div style="border: 1.5px solid #5A6A83; border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 10px;"><span style="width: 44px; height: 44px; border-radius: 12px; background: #0C1626; display: flex; align-items: center; justify-content: center; flex: none;" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D6A64A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5"></circle><path d="M12 12l6-6"></path><circle cx="16" cy="15" r="1"></circle></svg></span><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 22px;">The buyer radar</span><span style="font-size: 15px; line-height: 1.5; color: #5A6A83;">See who is close to buying, right now.</span></div>
+<div style="border: 1.5px solid #5A6A83; border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 10px;"><span style="width: 44px; height: 44px; border-radius: 12px; background: #0C1626; display: flex; align-items: center; justify-content: center; flex: none;" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D6A64A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h18l-7 9v6l-4 2v-8z"></path></svg></span><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 22px;">Appointments and deal qualification</span><span style="font-size: 15px; line-height: 1.5; color: #5A6A83;">Leads turned into real opportunities.</span></div>
+<div style="border: 1.5px solid #5A6A83; border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 10px;"><span style="width: 44px; height: 44px; border-radius: 12px; background: #0C1626; display: flex; align-items: center; justify-content: center; flex: none;" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D6A64A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 3"></path></svg></span><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 22px;">Countdown</span><span style="font-size: 15px; line-height: 1.5; color: #5A6A83;">Pressure that builds to launch day.</span></div>
+<div style="border: 1.5px solid #5A6A83; border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 10px;"><span style="width: 44px; height: 44px; border-radius: 12px; background: #0C1626; display: flex; align-items: center; justify-content: center; flex: none;" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D6A64A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M8 12l3 3 5-6"></path></svg></span><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 22px;">Live reservations</span><span style="font-size: 15px; line-height: 1.5; color: #5A6A83;">Deposits online, units going live.</span></div>
+</div>
+<div class="ph" style="height: 320px;">Real screenshots · Prop Launch buyer portal and launch day</div>
+</div>
+</section>
+<section class="sec" style="padding: 96px 0;">
+<div class="wrap g2" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; align-items: center;">
+<div style="display: flex; flex-direction: column; gap: 16px;">
+<span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 13px; color: #E4DCCB;">Moment one · Build the queue</span>
+<h2 class="hm" style="margin: 0; font-family: Jost, sans-serif; font-weight: 500; font-size: 44px; line-height: 1.07; letter-spacing: -0.02em;">Ready buyers lined up before sales open.</h2>
+<p style="margin: 0; font-size: 17px; line-height: 1.55; color: #A9B3C4;">Buyers log in, build a profile and pre-qualify themselves. Every click is tracked, so each buyer gets what interests them. Agents only spend time on buyers who are ready.</p>
+</div>
+<div style="display: flex; justify-content: center;">
+<div style="width: 340px; max-width: 100%; background: #F2EDE2; color: #0C1626; border-radius: 32px; padding: 24px; display: flex; flex-direction: column; gap: 14px; border: 8px solid #13223A;">
+<span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 11px; color: #5A6A83;">Buyer portal · sample</span>
+<span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 24px;">Welcome back, [Buyer]</span>
+<div style="background: #0C1626; color: #F2EDE2; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 6px;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 11px; color: #E4DCCB;">Sales open in</span><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 32px;">{{countdown}}</span></div>
+<div style="display: flex; justify-content: space-between; font-size: 14px;"><span>Your buyer profile</span><span style="font-weight: 600;">80%</span></div>
+<div style="height: 8px; background: #E4DCCB; border-radius: 8px;"><div style="width: 80%; height: 8px; background: #D6A64A; border-radius: 8px;"></div></div>
+<div style="display: flex; justify-content: space-between; font-size: 14px;"><span>Pre-qualified</span><span style="font-weight: 600;">Done</span></div>
+<div style="display: flex; justify-content: space-between; font-size: 14px;"><span>Interested in</span><span style="font-weight: 600;">2 bed · Sea view</span></div>
+</div>
+</div>
+</div>
+</section>
+<section class="sec" style="background: #F2EDE2; color: #0C1626; padding: 88px 0;">
+<div class="wrap g2" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; align-items: center;">
+<div style="display: flex; flex-direction: column; gap: 14px;">
+<span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 13px; color: #5A6A83;">Nurture · Opportunities</span>
+<h2 class="hm" style="margin: 0; font-family: Jost, sans-serif; font-weight: 500; font-size: 44px; line-height: 1.07; letter-spacing: -0.02em;">Every buyer kept warm until they are ready to talk.</h2>
+<p style="margin: 0; font-size: 17px; line-height: 1.55; color: #5A6A83;">An eight-by-eight email nurture campaign, automated follow-ups and personal messages, until a lead becomes an appointment and a qualified deal.</p>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center;">
+<span style="background: #0C1626; color: #F2EDE2; border-radius: 999px; padding: 12px 16px; font-weight: 600;">Email</span><span aria-hidden="true">→</span>
+<span style="background: #0C1626; color: #F2EDE2; border-radius: 999px; padding: 12px 16px; font-weight: 600;">WhatsApp</span><span aria-hidden="true">→</span>
+<span style="background: #0C1626; color: #F2EDE2; border-radius: 999px; padding: 12px 16px; font-weight: 600;">Email</span><span aria-hidden="true">→</span>
+<span style="background: #0C1626; color: #F2EDE2; border-radius: 999px; padding: 12px 16px; font-weight: 600;">SMS</span><span aria-hidden="true">→</span>
+<span style="background: #D6A64A; color: #0C1626; border-radius: 999px; padding: 12px 16px; font-weight: 600;">Appointment</span><span aria-hidden="true">→</span>
+<span style="background: #D6A64A; color: #0C1626; border-radius: 999px; padding: 12px 16px; font-weight: 600;">Qualified deal</span>
+</div>
+</div>
+</section>
+<section class="sec" style="background: #0F1B2F; padding: 96px 0;">
+<div class="wrap g2" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; align-items: center;">
+<div style="display: flex; justify-content: center;"><div style="width: 100%; max-width: 360px; aspect-ratio: 1; border-radius: 50%; background: #0F1B2F; color: #D6A64A;" role="img" aria-label="Buyer radar: each dot is a buyer, the closer to the centre, the closer to buying">
+<svg viewBox="0 0 200 200" style="width: 100%; height: 100%; display: block; overflow: visible;" aria-hidden="true">
+<circle cx="100" cy="100" r="87" fill="#D6A64A" fill-opacity="0.06"></circle>
+<circle cx="100" cy="100" r="24" fill="none" stroke="#D6A64A" stroke-opacity="0.32"></circle>
+<circle cx="100" cy="100" r="45" fill="none" stroke="#D6A64A" stroke-opacity="0.32"></circle>
+<circle cx="100" cy="100" r="66" fill="none" stroke="#D6A64A" stroke-opacity="0.32"></circle>
+<circle cx="100" cy="100" r="87" fill="none" stroke="#D6A64A" stroke-opacity="0.75" stroke-width="1.9"></circle>
+<line x1="100" y1="13" x2="100" y2="187" stroke="#D6A64A" stroke-opacity="0.2"></line>
+<line x1="13" y1="100" x2="187" y2="100" stroke="#D6A64A" stroke-opacity="0.2"></line>
+<g class="sweep"><path d="M100 100 L100 13 A87 87 0 0 0 49.4 29.2 Z" fill="#D6A64A" fill-opacity="0.18"></path><line x1="100" y1="100" x2="100" y2="13" stroke="#D6A64A" stroke-width="1.8"></line></g>
+<g transform="translate(107.5 79.3)"><circle class="ping" r="5" fill="none" stroke="#D6A64A" stroke-width="2"></circle><circle r="5.5" fill="#D6A64A"></circle></g><g transform="translate(129.0 92.2)"><circle r="4" fill="#D6A64A"></circle></g><g transform="translate(118.0 121.4)"><circle r="4" fill="#F2EDE2"></circle></g><g transform="translate(86.3 137.6)"><circle class="ping" r="5" fill="none" stroke="#D6A64A" stroke-width="2"></circle><circle r="5.5" fill="#D6A64A"></circle></g><g transform="translate(67.1 112.0)"><circle r="4" fill="#F2EDE2"></circle></g><g transform="translate(80.1 83.3)"><circle r="4" fill="#D6A64A"></circle></g><g transform="translate(135.4 57.9)"><circle r="4" fill="#F2EDE2"></circle></g><g transform="translate(156.4 120.5)"><circle r="4" fill="#5A6A83"></circle></g><g transform="translate(109.0 151.2)"><circle class="ping" r="5" fill="none" stroke="#D6A64A" stroke-width="2"></circle><circle r="5.5" fill="#F2EDE2"></circle></g><g transform="translate(49.4 142.4)"><circle r="4" fill="#5A6A83"></circle></g><g transform="translate(45.5 80.2)"><circle r="4" fill="#F2EDE2"></circle></g><g transform="translate(167.5 61.0)"><circle r="4" fill="#5A6A83"></circle></g><g transform="translate(161.3 151.4)"><circle r="4" fill="#5A6A83"></circle></g><g transform="translate(63.0 35.9)"><circle r="4" fill="#5A6A83"></circle></g>
+</svg>
+</div></div>
+<div style="display: flex; flex-direction: column; gap: 16px;">
+<span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 13px; color: #E4DCCB;">The buyer radar</span>
+<h2 class="hm" style="margin: 0; font-family: Jost, sans-serif; font-weight: 500; font-size: 44px; line-height: 1.07; letter-spacing: -0.02em;">See every buyer coming, and how close they are to buying.</h2>
+<p style="margin: 0; font-size: 17px; line-height: 1.55; color: #A9B3C4;">Each dot is a buyer. The closer to the centre, the closer to signing. Agents call the ones lighting up, at the moment they are ready.</p>
+<div style="display: flex; flex-direction: column; gap: 8px; font-size: 15px;">
+<span><span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #D6A64A; margin-right: 8px;"></span>Pre-qualified and ready</span>
+<span><span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #F2EDE2; margin-right: 8px;"></span>Warm: profile started</span>
+<span><span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #5A6A83; margin-right: 8px;"></span>Browsing</span>
+<span><span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; border: 2px solid #D6A64A; box-sizing: border-box; margin-right: 8px;"></span>Online right now</span>
+</div>
+<span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 11px; color: #A9B3C4;">Sample buyers</span>
+</div>
+</div>
+</section>
+<section class="sec" style="padding: 96px 0;">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 28px;">
+<span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 13px; color: #E4DCCB;">Moment two · The launch race</span>
+<h2 class="hm" style="margin: 0; font-family: Jost, sans-serif; font-weight: 500; font-size: 44px; line-height: 1.07; letter-spacing: -0.02em;">Sales open. Units go live. Scarcity does the selling.</h2>
+<p style="margin: 0; font-size: 17px; line-height: 1.55; color: #A9B3C4; max-width: 780px;">Buyers reserve and pay deposits online, in a race against other buyers. Every unit that goes shows live, so nobody wants to miss out.</p>
+<div class="g2" style="display: grid; grid-template-columns: 2fr 1fr; gap: 20px;">
+<div style="background: #13223A; border: 1.5px solid #1D2C44; border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 14px;">
+<span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 11px; color: #E4DCCB;">Live unit board · sample</span>
+<div style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 6px;">
+<sc-for list="{{units}}" as="u" hint-placeholder-count="48"><div style="aspect-ratio: 1; border-radius: 6px; {{u.style}}"></div></sc-for>
+</div>
+<div style="display: flex; gap: 18px; flex-wrap: wrap; font-size: 13px; color: #A9B3C4;"><span>Gold: reserved</span><span>Cream: sold</span><span>Outline: available</span></div>
+</div>
+<div style="background: #13223A; border: 1.5px solid #1D2C44; border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 12px;">
+<span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 11px; color: #E4DCCB;">Happening now · sample</span>
+<sc-for list="{{feed}}" as="f" hint-placeholder-count="4"><div style="border-bottom: 1.5px solid #1D2C44; padding-bottom: 10px; font-size: 15px;">{{f}}</div></sc-for>
+</div>
+</div>
+</div>
+</section>
+
+<section class="sec" style="background: #E4DCCB; color: #0C1626; padding: 80px 0;">
+<div class="wrap g2" style="display: grid; grid-template-columns: 2fr 3fr; gap: 40px; align-items: start;">
+<div style="display: flex; flex-direction: column; gap: 12px;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 12px;">Return on investment</span><h2 class="hm" style="margin: 0; font-family: Jost, sans-serif; font-weight: 500; font-size: 44px; line-height: 1.07; letter-spacing: -0.02em;">What this stage adds to your business value.</h2></div>
+<div style="display: flex; flex-direction: column;">
+<div style="display: flex; gap: 14px; align-items: baseline; padding: 16px 0; border-bottom: 1.5px solid #D3C9B4;"><span style="width: 10px; height: 10px; border-radius: 50%; background: #0C1626; flex: none;"></span><span style="font-family: Jost, sans-serif; font-size: 22px; line-height: 1.3;">More units sold in the first days</span></div>
+<div style="display: flex; gap: 14px; align-items: baseline; padding: 16px 0; border-bottom: 1.5px solid #D3C9B4;"><span style="width: 10px; height: 10px; border-radius: 50%; background: #0C1626; flex: none;"></span><span style="font-family: Jost, sans-serif; font-size: 22px; line-height: 1.3;">Less agent time on buyers who will not buy</span></div>
+<div style="display: flex; gap: 14px; align-items: baseline; padding: 16px 0; border-bottom: 1.5px solid #D3C9B4;"><span style="width: 10px; height: 10px; border-radius: 50%; background: #0C1626; flex: none;"></span><span style="font-family: Jost, sans-serif; font-size: 22px; line-height: 1.3;">Cash flow from deposits, sooner</span></div>
+</div>
+</div>
+</section>
+
+<section class="sec" style="background: #F2EDE2; color: #0C1626; padding: 72px 0;">
+<div class="wrap g3" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px;">
+<div style="background: #0C1626; color: #F2EDE2; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 8px;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 11px; color: #E4DCCB;">AI organises</span><span style="font-size: 17px; line-height: 1.5;">Tracks every buyer, tags their interests and sends each one the right message.</span></div>
+<div style="background: #E4DCCB; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 8px;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 11px;">People fly the plane</span><span style="font-size: 17px; line-height: 1.5;">Agents call the ready buyers, at the right moment, and close.</span></div>
+<div style="background: #D6A64A; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 8px;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 11px;">You see everything</span><span style="font-size: 17px; line-height: 1.5;">Live on your dashboards, all the time.</span></div>
+</div>
+</section>
+
+<section class="sec" style="padding: 88px 0 0;">
+<div class="wrap g2" style="display: grid; grid-template-columns: 3fr 2fr; gap: 16px; align-items: stretch;">
+<div style="border: 1.5px solid #1D2C44; border-radius: 20px; padding: 30px; display: flex; flex-direction: column; gap: 12px;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 11px; color: #E4DCCB;">In a sentence</span><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 26px; line-height: 1.3;">Buyers move when they see other buyers moving. Without the race, they wait, and every week of waiting costs money.</span></div>
+<div style="background: #13223A; border-radius: 20px; padding: 30px; display: flex; flex-direction: column; gap: 12px;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 11px; color: #D6A64A;">A question for you</span><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 24px; line-height: 1.3;">How many units would you rather sell on day one than in month nine?</span></div>
+</div>
+</section>
+
+<section class="sec" style="padding: 80px 0;">
+<div class="wrap">
+<a href="Cruise.dc.html" style="text-decoration: none; color: #F2EDE2; background: #13223A; border: 1.5px solid #1D2C44; border-radius: 20px; padding: 32px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px;">
+<span style="display: flex; flex-direction: column; gap: 6px;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 11px; color: #E4DCCB;">Next · Stage 05 · Cruise</span><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 30px;">Prop Manager, and content that keeps the momentum going.</span></span>
+<span style="color: #0C1626; background: #D6A64A; font-weight: 600; border-radius: 999px; padding: 14px 22px;">Continue</span>
+</a>
+</div>
+</section>
+<footer class="wrap" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; padding-top: 28px; padding-bottom: 28px; border-top: 1.5px solid #1D2C44;">
+<img src="/_blob/d2b7509f808bfab0319b785bd9941150" alt="metadology" style="width: 120px; height: auto; display: block;">
+<span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 11px; color: #A9B3C4;">From land to brand to business value, and beyond</span>
+<a href="Main.dc.html#close" style="color: #0C1626; background: #D6A64A; text-decoration: none; font-weight: 600; border-radius: 999px; padding: 12px 20px;">Ask your Metadology associate for a walkthrough</a>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":7700}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { left: 12 * 86400 + 4 * 3600 + 31 * 60 }; }
+  componentDidMount() { this.timer = setInterval(() => this.setState({ left: Math.max(0, this.state.left - 1) }), 1000); }
+  componentWillUnmount() { clearInterval(this.timer); }
+  renderVals() {
+    const cur = 3;
+    const names = ['Pre-flight', 'Take-off', 'Climb', 'Launch', 'Cruise', 'Navigation', 'Landing', 'Next flight'];
+    const files = ['PreFlight', 'TakeOff', 'Climb', 'Launch', 'Cruise', 'Navigation', 'Landing', 'NextFlight'];
+    const angles = [0, 7, 13, 20, 26, 32, 39, 45];
+    const meanings = ['Brand and plan', 'Website and funnels', 'Finding buyers', 'Queue and race', 'Sales and momentum', '3D and one record', 'Close and transfer', 'After sales'];
+    const track = names.map((n, i) => ({
+      name: n, meaning: meanings[i], file: files[i] + '.dc.html', ang: angles[i], here: i === cur,
+      dot: i <= cur ? '#D6A64A' : '#1D2C44',
+      lineL: i === 0 ? 'transparent' : (i <= cur ? '#D6A64A' : '#1D2C44'),
+      lineR: i === names.length - 1 ? 'transparent' : (i < cur ? '#D6A64A' : '#1D2C44'),
+      fg: i === cur ? '#F2EDE2' : '#A9B3C4'
+    }));
+    const readout = "LIFT 20° · FULL THRUST · QUEUE AND RACE";
+    const dark = { bg: '#0C1626', fg: '#F2EDE2', arrow: '#D6A64A' };
+    const light = { bg: '#E4DCCB', fg: '#0C1626', arrow: '#5A6A83' };
+    const forces = [
+      Object.assign({ name: 'Thrust', rot: 0, line: 'Momentum from a queue of ready buyers, released into a race for units.' }, dark),
+      Object.assign({ name: 'Lift', rot: -90, line: 'Marketing power: visible demand that makes every buyer want in.' }, dark),
+      Object.assign({ name: 'Drag', rot: 180, line: 'A quiet launch day and deals that fall away. That is the old route.' }, light),
+      Object.assign({ name: 'Weight', rot: 90, line: 'Agents chasing buyers who were never ready.' }, light)
+    ];
+    const s = this.state.left;
+    const pad = (n) => (n < 10 ? '0' + n : '' + n);
+    const countdown = Math.floor(s / 86400) + 'd ' + pad(Math.floor((s % 86400) / 3600)) + 'h ' + pad(Math.floor((s % 3600) / 60)) + 'm ' + pad(s % 60) + 's';
+    const pattern = 'rrsaarasraasrraasarsaarrasaasrraasraasarrasaasra';
+    const units = pattern.split('').map((c) => ({ style: c === 'r' ? 'background: #D6A64A;' : c === 's' ? 'background: #F2EDE2;' : 'border: 1.5px solid #5A6A83; box-sizing: border-box;' }));
+    const feed = ['Unit 0704 reserved · deposit paid', '3 buyers viewing unit 0502', 'New buyer pre-qualified', 'Unit 0303 sold · offer signed'];
+    const raw = [[20,22,'g',1],[75,30,'g',0],[140,28,'w',0],[200,40,'g',1],[250,35,'w',0],[310,26,'g',0],[40,55,'w',0],[110,60,'b',0],[170,52,'w',1],[230,66,'b',0],[290,58,'w',0],[60,78,'b',0],[130,80,'b',0],[330,74,'b',0]];
+    const col = { g: '#D6A64A', w: '#F2EDE2', b: '#5A6A83' };
+    const blips = raw.map((b) => { const rad = (b[0] - 90) * Math.PI / 180; return { x: (100 + b[1] * Math.cos(rad)).toFixed(1), y: (100 + b[1] * Math.sin(rad)).toFixed(1), fill: col[b[2]], big: b[3] === 1, r: b[3] ? 5.5 : 4 }; });
+    return { track, readout, forces, countdown, units, feed, blips };
+  }
+}
+</script>
+</body>
+</html>

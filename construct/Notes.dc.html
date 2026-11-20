@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Notes and red flags</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&amp;family=Hanken+Grotesk:wght@400;500;600&amp;family=DM+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0;background:#F2EDE2}
+a{color:#0C1626}
+.wrap{max-width:1100px;margin:0 auto;padding:0 56px;box-sizing:border-box}
+@media (max-width:820px){.wrap{padding:0 16px}.g2{grid-template-columns:1fr !important}}
+</style>
+</helmet>
+<div style="font-family: 'Hanken Grotesk', Arial, sans-serif; color: #0C1626; background: #F2EDE2; min-height: 100vh; padding-bottom: 96px;">
+<div style="background: #0C1626; color: #F2EDE2;">
+<div class="wrap" style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; padding-top: 14px; padding-bottom: 14px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: .09em; text-transform: uppercase;">Notes and red flags · for Juan</span>
+<a href="Main.dc.html" style="color: #0C1626; background: #D6A64A; text-decoration: none; font-weight: 600; border-radius: 999px; padding: 12px 18px;">Back to the cockpit</a>
+</div>
+</div>
+<div class="wrap" style="display: flex; flex-direction: column; gap: 40px; padding-top: 56px;">
+<h1 style="margin: 0; font-family: Jost, sans-serif; font-weight: 500; font-size: 46px; line-height: 1.06; letter-spacing: -0.02em;">Whose idea is whose.</h1>
+
+<div style="display: flex; flex-direction: column; gap: 14px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: .09em; color: #1F6B3F; font-weight: 500;">GREEN · YOUR IDEAS AND DECISIONS</span>
+<div class="g2" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px;">
+<sc-for list="{{green}}" as="g" hint-placeholder-count="6">
+<div style="background: #FFFFFF; border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 6px; outline: 1.5px solid #CFE3D6;">
+<span style="font-weight: 600; font-size: 16px;">{{g.t}}</span>
+<span style="font-size: 15px; line-height: 1.5; color: #33405A;">{{g.d}}</span>
+</div>
+</sc-for>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 14px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: .09em; color: #A1231B; font-weight: 500;">RED · MY CHOICES, WAITING FOR YOUR YES</span>
+<div class="g2" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px;">
+<sc-for list="{{red}}" as="r" hint-placeholder-count="6">
+<div style="background: #FFFFFF; border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 6px; outline: 1.5px solid #F0C9C5;">
+<span style="font-weight: 600; font-size: 16px;">{{r.t}}</span>
+<span style="font-size: 15px; line-height: 1.5; color: #33405A;">{{r.d}}</span>
+<span style="font-size: 15px; line-height: 1.5; color: #A1231B; font-weight: 600;">{{r.q}}</span>
+</div>
+</sc-for>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 14px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: .09em; color: #9A4A0C; font-weight: 500;">ORANGE · FOR LATER</span>
+<div class="g2" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px;">
+<sc-for list="{{orange}}" as="o" hint-placeholder-count="6">
+<div style="background: #FFFFFF; border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 6px; outline: 1.5px solid #F2D5BC;">
+<span style="font-weight: 600; font-size: 16px;">{{o.t}}</span>
+<span style="font-size: 15px; line-height: 1.5; color: #33405A;">{{o.d}}</span>
+</div>
+</sc-for>
+</div>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":3000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const green = [
+      { t: 'The flight instruments on every stage', d: 'Each stage page now has the lift and thrust report: the four-zone graph with the plane climbing toward selling fast at the right price, a lift meter and a thrust lever. The plane sits a little higher and further forward on every stage. The buyer radar is on the launch page and a lead radar sits in the control tower on the climb page. The lit funnel blocks float gently to show where the stage sits.' },
+      { t: 'Three promises Metadology stands behind', d: 'Your own people run it and get faster, nobody is replaced. Your data stays yours and can be taken with you. You can start with one stage on a real project and add the next when ready.' },
+      { t: 'The buyer pyramid', d: 'Out of every 10,000 people: the top 3% are buying now and every developer competes for them; 6% are open to it; 30% are not thinking about it yet and are reached through educational marketing. Audience shares, not money numbers.' },
+      { t: 'Funnel steps by stage', d: 'Take-off builds awareness with the website and pre-launch. Climb converts with ads, blogs, filtering and qualification. Launch and cruise nurture and create opportunities. Landing closes. Next flight is after sales. SIMS left out, principles only.' },
+      { t: 'What the consultation taught us, woven in', d: 'Developers sit where three worlds meet, commercial, technical and statutory, the only place where risk and reward come together. The job is managing change and friction. So the overview now opens with that seat, drag is named friction, every stage page says in plain words what it removes, and the plain-words list shows what each piece takes off the developer’s desk. No names from the meeting appear anywhere.' },
+      { t: 'Metadology’s offer', d: 'Pitched as Metadology’s own integrated offer, licensed to them. Prop Launch, Prop Manager and Super Systems sit inside it.' },
+      { t: 'From land to brand to business value, and beyond', d: 'The line on the overview, the close and every footer. An integrated, holistic solution and service, never software.' },
+      { t: 'No numbers on money', d: 'Every return-on-investment line is written without numbers.' },
+      { t: 'Property first, flight second', d: 'Big headings say what a stage means for a developer. The flight word sits small. The tracker at the top shows both: the flight stage and what it means, for example Climb, finding buyers.' },
+      { t: 'Plain statements, no "it seems like"', d: 'Each page opens with a straight statement, for example "Buyers are judging your development long before they ever see it."' },
+      { t: 'The four forces, in your meaning', d: 'Thrust is momentum from one integrated solution that serves the developer. Lift is marketing power and visual awareness that create a place to buy. Drag is guesswork and rework, the old route. Weight is briefing every supplier and steering alone.' },
+      { t: 'The road boxes are gone', d: 'The "bound by gravity" boxes are taken off every stage page.' },
+      { t: 'Pre-flight in your order', d: 'Brand strategy, brand guide, buyer research, market positioning, corporate identity, then the flight plan: a full marketing and campaign plan with every pivot point.' },
+      { t: 'Your services, placed', d: 'Take-off: website, funnel pages, A/B testing, custom CRM, pre-launch funnels, blog campaigns, brochures and sales packs, billboards. Climb: marketing triggers, Facebook, Instagram and Google ads (LinkedIn where it fits), portal listings, blog traffic and retargeting, lead filtering and qualification. Launch: campaigns, nurture, appointments and deal qualification. Cruise: three-month campaign sprints, production machine, reporting. Landing: offer to purchase, transaction and conveyance management. Next flight: after sales.' },
+      { t: 'The complete funnel', d: 'Capture, nurture, close: lead generation, pre-launch, lead filtering, lead qualification, lead nurture, opportunities, close and after sales. Shown in full on the overview, and as a strip on every stage page showing which steps that stage carries.' },
+      { t: 'Kept from before', d: 'Eight stages, the overview first, the radar, the control tower, the tracker, AI organises and people fly the plane, the book’s psychology, British spelling, the walkthrough button.' }
+    ];
+    const red = [
+      { t: 'A way to question your own team', d: 'I used this idea for the 3D build and one record: the facts in front of the developer, so they can test their own professionals.', q: 'Keep it?' },
+      { t: 'The 3D starts at pre-flight', d: 'Your plans built virtually at pre-flight, renders and films at take-off, the full 3D and one record in navigation.', q: 'Keep the early 3D?' },
+      { t: 'Flight zones, radar, vitals and events', d: 'What the four zones mean, what the radar dots mean, the six control tower vitals and the example momentum events are my choices.', q: 'Right as they are?' },
+      { t: 'All the words are mine', d: 'Every heading, statement, summary and question, written from your notes and Metadology’s public phrases.', q: 'Right direction for Amberly?' }
+    ];
+    const orange = [
+      { t: 'Money numbers kept off', d: 'The consultation mentions a share of turnover lost to paper-pushing. I described it in words only, with no number, as you asked.' },
+      { t: 'For the sales conversation, not the page', d: 'From the consultation: never a fee per unit sold. A fixed monthly fee, with any bonus tied to measured savings or faster sell-out. Lead with their pain, sell one piece first, let the next piece be their idea, bring one of their non-technical people in early, and make their team the heroes.' },
+      { t: 'Twenty times longer', d: 'Still on the overview as your picture. It is not a measured number, so we need a source or softer words if a developer asks.' },
+      { t: 'Real work to drop in', d: 'Grey boxes wait for Metadology 3D walkthroughs, brand and website work, and Prop Launch, Prop Manager and Super Systems screens.' },
+      { t: 'Numbers from the team', d: 'Ad averages for the open-numbers panel, when the team has them.' },
+      { t: 'More of the book for later', d: 'The price tactics suit the sales call and a pricing page.' },
+      { t: 'Look, movement and 3D', d: 'Amberly finishes the look. Scroll movement and 3D effects come in the build.' },
+      { t: 'Use it again later', d: 'Once approved, this can become the template for our own proposals.' }
+    ];
+    return { green, red, orange };
+  }
+}
+</script>
+</body>
+</html>

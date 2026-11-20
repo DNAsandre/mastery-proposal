@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Strategic marketing triggers, ads, listings and open numbers</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&amp;family=Hanken+Grotesk:wght@400;500;600&amp;family=DM+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0;background:#0C1626}
+a{color:#D6A64A}a:hover{color:#E6BD6C}
+.wrap{max-width:1200px;margin:0 auto;padding:0 56px;box-sizing:border-box}
+.ph{border:1.5px dashed rgba(90,106,131,.5);border-radius:12px;display:flex;align-items:center;justify-content:center;text-align:center;font-family:"DM Mono",monospace;font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:#5A6A83;padding:16px;box-sizing:border-box}
+.sweep{transform-box:view-box;transform-origin:100px 100px;animation:sweep 4.2s linear infinite}
+@keyframes sweep{to{transform:rotate(360deg)}}
+.ping{transform-box:fill-box;transform-origin:center;animation:ping 2.6s ease-out infinite}
+@keyframes ping{from{transform:scale(1);opacity:.9}to{transform:scale(3);opacity:0}}
+.live{animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.lit{animation:litfloat 2.6s ease-in-out infinite;box-shadow:0 10px 0 -4px #D6A64A}
+@keyframes litfloat{0%,100%{transform:translateY(-6px)}50%{transform:translateY(-14px)}}
+.fly{animation:flyin 3.2s ease-in-out infinite}
+@keyframes flyin{0%,100%{transform:translate(0,0)}50%{transform:translate(4px,-4px)}}
+@media (prefers-reduced-motion:reduce){.sweep,.ping,.live,.lit,.fly{animation:none}}
+@media (max-width:820px){.wrap{padding:0 16px}.g2,.g3,.g4,.g6{grid-template-columns:1fr !important}.hxl{font-size:38px !important}.hm{font-size:32px !important}.sec{padding:64px 0 !important}}
+</style>
+</helmet>
+<div style="font-family: 'Hanken Grotesk', Arial, sans-serif; color: #F2EDE2; background: #0C1626; min-height: 100vh;">
+<div style="background: #E4DCCB; color: #0C1626;">
+<div class="wrap" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; padding-top: 10px; padding-bottom: 10px;">
+<span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 12px;">Mock-up of the structure · Amberly finishes the look</span>
+<a href="Notes.dc.html" style="background: #0C1626; color: #F2EDE2; text-decoration: none; font-weight: 600; font-size: 14px; border-radius: 999px; padding: 12px 18px;">Notes and red flags</a>
+</div>
+</div>
+<header style="position: sticky; top: 0; z-index: 30; background: #0C1626; border-bottom: 1.5px solid #1D2C44;">
+<div class="wrap" style="display: flex; flex-wrap: wrap; align-items: center; gap: 20px; padding-top: 10px; padding-bottom: 10px;">
+<a href="Main.dc.html"><img src="/_blob/d2b7509f808bfab0319b785bd9941150" alt="metadology home" style="width: 124px; height: auto; display: block;"></a>
+<nav aria-label="Flight tracker" style="flex: 1 1 0; display: flex; min-width: 0;">
+<sc-for list="{{track}}" as="t" hint-placeholder-count="8">
+<a href="{{t.file}}" style="flex: 1 1 0; min-width: 0; text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 4px;">
+<span style="height: 30px; display: flex; align-items: flex-end;">
+<sc-if value="{{t.here}}" hint-placeholder-val="{{false}}"><svg width="40" height="30" viewBox="-40 -24 80 48" aria-hidden="true"><g transform="rotate(-{{t.ang}}) scale(.5)"><path d="M-65 0 L-45 -3 L-55 -23 L-43 -23 L-22 -6 L20 -7 L34 -12 L48 -10 Q68 -8 76 0 Q76 5 59 7 L8 9 L-9 22 L-27 22 L-15 8 L-47 6 L-65 0Z" fill="#D6A64A"></path></g></svg></sc-if>
+</span>
+<span style="display: flex; align-items: center; width: 100%;"><span style="flex: 1; height: 2px; background: {{t.lineL}};"></span><span style="width: 10px; height: 10px; border-radius: 50%; background: {{t.dot}}; flex: none;"></span><span style="flex: 1; height: 2px; background: {{t.lineR}};"></span></span>
+<span style="font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: {{t.fg}}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%;">{{t.name}}</span>
+<span style="font-size: 11px; line-height: 1.2; color: {{t.fg}}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%;">{{t.meaning}}</span>
+</a>
+</sc-for>
+</nav>
+<span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 11px; color: #E4DCCB; flex: 1 0 100%;">{{readout}}</span>
+</div>
+</header>
+
+<section class="sec" style="position: relative; overflow: hidden; padding: 96px 0;">
+<div style="position: absolute; right: -220px; bottom: -300px; width: 760px; height: 760px; border-radius: 50%; background: radial-gradient(closest-side, rgba(214,166,74,.2), rgba(214,166,74,0));" aria-hidden="true"></div>
+<div class="wrap" style="position: relative; display: flex; flex-direction: column; gap: 22px;">
+<div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 13px; color: #E4DCCB;">Stage 03 of 08</span><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 11px; color: #0C1626; background: #D6A64A; border-radius: 999px; padding: 5px 10px;">Climb</span></div>
+<p style="margin: 0; font-family: Jost, sans-serif; font-size: 22px; line-height: 1.35; color: #E4DCCB; max-width: 820px;">Developers pay for marketing without ever really seeing what it brings back.</p>
+<h1 class="hxl" style="margin: 0; font-family: Jost, sans-serif; font-weight: 500; font-size: 60px; line-height: 1.04; letter-spacing: -0.025em; max-width: 1000px;">Strategic marketing triggers, ads, listings and open numbers that bring the right buyers in.</h1>
+<p style="margin: 0; font-size: 19px; line-height: 1.55; color: #A9B3C4; max-width: 760px;">Campaigns on every channel buyers use, every lead filtered and qualified, and every number open to you.</p>
+<p style="margin: 0; font-size: 17px; line-height: 1.5; color: #F2EDE2; max-width: 760px; border-left: 3px solid #D6A64A; padding-left: 14px;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 11px; color: #D6A64A; display: block; margin-bottom: 4px;">What it removes</span>Leads nobody can account for. You see every enquiry, and who followed it up.</p>
+</div>
+</section>
+
+<section class="sec" style="background: #F2EDE2; color: #0C1626; padding: 88px 0;">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 28px;">
+<div style="display: flex; flex-direction: column; gap: 10px;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 12px; color: #5A6A83;">Thrust · Lift · Drag · Weight</span><h2 class="hm" style="margin: 0; font-family: Jost, sans-serif; font-weight: 500; font-size: 44px; line-height: 1.07; letter-spacing: -0.02em;">What speeds this stage up, and what holds it back.</h2></div>
+<div class="g4" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px;">
+<sc-for list="{{forces}}" as="f" hint-placeholder-count="4">
+<div style="background: {{f.bg}}; color: {{f.fg}}; border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 10px; min-height: 190px;">
+<svg width="40" height="40" viewBox="0 0 44 44" aria-hidden="true"><g transform="rotate({{f.rot}} 22 22)"><path d="M6 22 H36 M27 13 L37 22 L27 31" fill="none" stroke="{{f.arrow}}" stroke-width="3"></path></g></svg>
+<span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 11px;">{{f.name}}</span>
+<span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 20px; line-height: 1.25;">{{f.line}}</span>
+</div>
+</sc-for>
+</div>
+</div>
+</section>
+
+<section class="sec" style="padding: 88px 0;">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 24px;">
+<div style="display: flex; flex-direction: column; gap: 10px; max-width: 900px;">
+<span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 13px; color: #E4DCCB;">Lift and thrust report · Stage 03 · Climb</span>
+<h2 class="hm" style="margin: 0; font-family: Jost, sans-serif; font-weight: 500; font-size: 44px; line-height: 1.07; letter-spacing: -0.02em; font-size: 36px;">Where this stage moves your development.</h2>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: stretch;">
+<svg viewBox="0 0 700 510" style="flex: 1 1 420px; max-width: 620px; height: auto; display: block;" role="img" aria-label="Four zones: lift and thrust is selling fast at the right price, lift and drag is strong brand but slow sales, weight and thrust is busy but margins sinking, weight and drag is stuck on the ground. After Climb the plane sits further forward and higher, toward selling fast at the right price.">
+<rect width="700" height="510" rx="16" fill="#0F1B2F"></rect>
+<rect x="40" y="40" width="310" height="215" fill="#E4DCCB" opacity=".08"></rect>
+<rect x="350" y="40" width="310" height="215" fill="#D6A64A" opacity=".24"></rect>
+<rect x="40" y="255" width="310" height="215" fill="#060D18" opacity=".7"></rect>
+<rect x="350" y="255" width="310" height="215" fill="#060D18" opacity=".45"></rect>
+<path d="M40 255H660 M350 40V470" stroke="#5A6A83" stroke-width="1.5"></path>
+<g font-family="DM Mono, monospace" font-size="13" letter-spacing="1" fill="#E4DCCB">
+<text x="56" y="66">LIFT + DRAG</text><text x="56" y="88" font-family="Hanken Grotesk, sans-serif" font-size="17" letter-spacing="0" fill="#F2EDE2">Strong brand, slow sales</text>
+<text x="56" y="430">WEIGHT + DRAG</text><text x="56" y="452" font-family="Hanken Grotesk, sans-serif" font-size="17" letter-spacing="0" fill="#F2EDE2">Stuck on the ground</text>
+<text x="644" y="430" text-anchor="end">WEIGHT + THRUST</text><text x="644" y="452" text-anchor="end" font-family="Hanken Grotesk, sans-serif" font-size="17" letter-spacing="0" fill="#F2EDE2">Busy, but margins sinking</text>
+</g>
+<text x="370" y="66" font-family="DM Mono, monospace" font-size="13" letter-spacing="1" fill="#E4DCCB">LIFT + THRUST</text><text x="370" y="88" font-family="Hanken Grotesk, sans-serif" font-size="17" fill="#F2EDE2">Selling fast, at the right price</text>
+<g font-family="DM Mono, monospace" font-size="12" letter-spacing="1" fill="#A9B3C4"><text x="350" y="26" text-anchor="middle">LIFT ↑</text><text x="350" y="496" text-anchor="middle">WEIGHT ↓</text><text x="48" y="246">← DRAG</text><text x="652" y="246" text-anchor="end">THRUST →</text></g>
+<g opacity=".3" transform="translate(190 390) rotate(20) scale(.36)"><path d="M-65 0 L-45 -3 L-55 -23 L-43 -23 L-22 -6 L20 -7 L34 -12 L48 -10 Q68 -8 76 0 Q76 5 59 7 L8 9 L-9 22 L-27 22 L-15 8 L-47 6 L-65 0Z" fill="#F2EDE2"></path></g>
+<text x="150" y="425" font-family="DM Mono, monospace" font-size="11" fill="#A9B3C4">THE OLD ROUTE</text>
+<path d="M350 255 L455 255 L520 198" fill="none" stroke="#D6A64A" stroke-width="2" stroke-dasharray="5 6" opacity=".7"></path>
+<circle cx="350" cy="255" r="4" fill="#D6A64A" opacity=".55"></circle><circle cx="455" cy="255" r="4" fill="#D6A64A" opacity=".55"></circle>
+<circle cx="520" cy="198" r="34" fill="#D6A64A" opacity=".18"></circle>
+<g transform="translate(520 198)"><g class="fly"><g transform="rotate(-24) scale(.48)"><path d="M-65 0 L-45 -3 L-55 -23 L-43 -23 L-22 -6 L20 -7 L34 -12 L48 -10 Q68 -8 76 0 Q76 5 59 7 L8 9 L-9 22 L-27 22 L-15 8 L-47 6 L-65 0Z" fill="#F2EDE2" stroke="#D6A64A" stroke-width="2"></path></g></g></g>
+<text x="520" y="244" text-anchor="middle" font-family="DM Mono, monospace" font-size="11" fill="#D6A64A">AFTER CLIMB</text>
+</svg>
+<div style="flex: 0 0 auto; display: flex; gap: 12px;">
+<div style="background: #13223A; border: 1.5px solid #1D2C44; border-radius: 14px; padding: 12px; display: flex; flex-direction: column; align-items: center; gap: 6px; width: 120px;">
+<span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 10px; color: #E4DCCB;">Lift</span>
+<svg viewBox="0 0 128 285" style="width: 84px; height: auto; display: block;" role="img" aria-label="Lift gauge, nose up">
+<rect x="73" y="40" width="18" height="200" rx="4" fill="#1D2C44"></rect><rect x="73" y="104" width="18" height="136" rx="4" fill="#D6A64A" opacity=".85"></rect>
+<path d="M4 140H96" stroke="#F2EDE2" stroke-dasharray="3 3" opacity=".5"></path><text x="100" y="144" font-size="10" fill="#E4DCCB" font-family="DM Mono, monospace">LEVEL</text>
+<g transform="translate(40 104)"><path d="M-30 0H33" stroke="#F2EDE2" stroke-width="2"></path><g transform="rotate(-16.2) scale(.36)"><path d="M-65 0 L-45 -3 L-55 -23 L-43 -23 L-22 -6 L20 -7 L34 -12 L48 -10 Q68 -8 76 0 Q76 5 59 7 L8 9 L-9 22 L-27 22 L-15 8 L-47 6 L-65 0Z" fill="#F2EDE2"></path></g></g>
+<text x="64" y="274" fill="#D6A64A" font-size="18" font-family="DM Mono, monospace" text-anchor="middle">NOSE UP</text>
+</svg>
+<span style="font-size: 12px; line-height: 1.4; color: #A9B3C4; text-align: center;">Marketing power</span>
+</div>
+<div style="background: #13223A; border: 1.5px solid #1D2C44; border-radius: 14px; padding: 12px; display: flex; flex-direction: column; align-items: center; gap: 6px; width: 120px;">
+<span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 10px; color: #E4DCCB;">Thrust</span>
+<svg viewBox="0 0 128 285" style="width: 84px; height: auto; display: block;" role="img" aria-label="Thrust lever, open">
+<text x="64" y="24" text-anchor="middle" fill="#E4DCCB" font-size="10" font-family="DM Mono, monospace">FULL THRUST</text>
+<rect x="81" y="40" width="18" height="200" rx="4" fill="#1D2C44"></rect><rect x="81" y="84" width="18" height="156" rx="4" fill="#D6A64A" opacity=".85"></rect>
+<rect x="35" y="37" width="17" height="207" rx="8" fill="#060D18" stroke="#5A6A83" stroke-width="2"></rect>
+<path d="M18 244L43 84" stroke="#A9B3C4" stroke-width="9" stroke-linecap="round"></path><circle cx="18" cy="244" r="9" fill="#22344F" stroke="#A9B3C4"></circle>
+<g transform="translate(43 84)"><rect x="-25" y="-11" width="51" height="23" rx="8" fill="#13223A" stroke="#F2EDE2" stroke-width="2"></rect><path d="M-19 5H19" stroke="#D6A64A" stroke-width="3"></path></g>
+<text x="64" y="274" text-anchor="middle" fill="#D6A64A" font-size="18" font-family="DM Mono, monospace">OPEN</text>
+</svg>
+<span style="font-size: 12px; line-height: 1.4; color: #A9B3C4; text-align: center;">Integrated momentum</span>
+</div>
+</div>
+</div>
+<span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 11px; color: #A9B3C4;">Illustration · each development is measured on its own numbers</span>
+</div>
+</section>
+<section class="sec" style="background: #F2EDE2; color: #0C1626; padding: 0 0 88px;">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 18px;">
+<div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 12px; color: #5A6A83;">The marketing funnel · capture, nurture, close</span><span style="font-size: 15px; color: #5A6A83;">Climb generates, filters and qualifies the leads.</span></div>
+<div class="g4" style="display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 6px;">
+<div class="lit" style="background: #0C1626; color: #F2EDE2; border-radius: 12px; padding: 12px 10px; display: flex; flex-direction: column; gap: 6px; min-height: 84px;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 9px; color: #D6A64A;">Capture</span><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 15px; line-height: 1.2;">Lead generation</span></div>
+<div class="" style="background: #E4DCCB; color: #5A6A83; border-radius: 12px; padding: 12px 10px; display: flex; flex-direction: column; gap: 6px; min-height: 84px;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 9px; color: #5A6A83;">Capture</span><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 15px; line-height: 1.2;">Pre-launch campaign</span></div>
+<div class="lit" style="background: #0C1626; color: #F2EDE2; border-radius: 12px; padding: 12px 10px; display: flex; flex-direction: column; gap: 6px; min-height: 84px;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 9px; color: #D6A64A;">Capture</span><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 15px; line-height: 1.2;">Lead filtering</span></div>
+<div class="lit" style="background: #0C1626; color: #F2EDE2; border-radius: 12px; padding: 12px 10px; display: flex; flex-direction: column; gap: 6px; min-height: 84px;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 9px; color: #D6A64A;">Capture</span><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 15px; line-height: 1.2;">Lead qualification</span></div>
+<div class="" style="background: #E4DCCB; color: #5A6A83; border-radius: 12px; padding: 12px 10px; display: flex; flex-direction: column; gap: 6px; min-height: 84px;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 9px; color: #5A6A83;">Nurture</span><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 15px; line-height: 1.2;">Lead nurture</span></div>
+<div class="" style="background: #E4DCCB; color: #5A6A83; border-radius: 12px; padding: 12px 10px; display: flex; flex-direction: column; gap: 6px; min-height: 84px;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 9px; color: #5A6A83;">Nurture</span><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 15px; line-height: 1.2;">Opportunities</span></div>
+<div class="" style="background: #E4DCCB; color: #5A6A83; border-radius: 12px; padding: 12px 10px; display: flex; flex-direction: column; gap: 6px; min-height: 84px;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 9px; color: #5A6A83;">Close</span><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 15px; line-height: 1.2;">Close</span></div>
+<div class="" style="background: #E4DCCB; color: #5A6A83; border-radius: 12px; padding: 12px 10px; display: flex; flex-direction: column; gap: 6px; min-height: 84px;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 9px; color: #5A6A83;">Close</span><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 15px; line-height: 1.2;">After sales</span></div>
+</div>
+</div>
+</section>
+
+<section class="sec" style="background: #F2EDE2; color: #0C1626; padding: 0 0 96px;">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 28px;">
+<h2 class="hm" style="margin: 0; font-family: Jost, sans-serif; font-weight: 500; font-size: 44px; line-height: 1.07; letter-spacing: -0.02em;">What our team does at this stage.</h2>
+<div class="g3" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px;">
+<div style="border: 1.5px solid #5A6A83; border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 10px;"><span style="width: 44px; height: 44px; border-radius: 12px; background: #0C1626; display: flex; align-items: center; justify-content: center; flex: none;" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D6A64A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3L5 14h6l-1 7 8-11h-6z"></path></svg></span><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 22px;">Strategic marketing triggers</span><span style="font-size: 15px; line-height: 1.5; color: #5A6A83;">Offers and moments that make buyers act now.</span></div>
+<div style="border: 1.5px solid #5A6A83; border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 10px;"><span style="width: 44px; height: 44px; border-radius: 12px; background: #0C1626; display: flex; align-items: center; justify-content: center; flex: none;" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D6A64A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"></path></svg></span><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 22px;">Facebook and Instagram ads</span><span style="font-size: 15px; line-height: 1.5; color: #5A6A83;">Image and video campaigns aimed at your buyer personas.</span></div>
+<div style="border: 1.5px solid #5A6A83; border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 10px;"><span style="width: 44px; height: 44px; border-radius: 12px; background: #0C1626; display: flex; align-items: center; justify-content: center; flex: none;" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D6A64A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg></span><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 22px;">Google AdWords</span><span style="font-size: 15px; line-height: 1.5; color: #5A6A83;">Buyers who are already searching.</span></div>
+<div style="border: 1.5px solid #5A6A83; border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 10px;"><span style="width: 44px; height: 44px; border-radius: 12px; background: #0C1626; display: flex; align-items: center; justify-content: center; flex: none;" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D6A64A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="2.5"></circle><circle cx="6" cy="12" r="2.5"></circle><circle cx="18" cy="19" r="2.5"></circle><path d="M8.2 10.8l7.6-4.6M8.2 13.2l7.6 4.6"></path></svg></span><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 22px;">Social media campaigns</span><span style="font-size: 15px; line-height: 1.5; color: #5A6A83;">Promotions, and eight organic posts a month. LinkedIn where it fits.</span></div>
+<div style="border: 1.5px solid #5A6A83; border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 10px;"><span style="width: 44px; height: 44px; border-radius: 12px; background: #0C1626; display: flex; align-items: center; justify-content: center; flex: none;" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D6A64A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"></path><path d="M5 10v10h14V10"></path><path d="M10 20v-6h4v6"></path></svg></span><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 22px;">Portal listings</span><span style="font-size: 15px; line-height: 1.5; color: #5A6A83;">Your units on the property portals.</span></div>
+<div style="border: 1.5px solid #5A6A83; border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 10px;"><span style="width: 44px; height: 44px; border-radius: 12px; background: #0C1626; display: flex; align-items: center; justify-content: center; flex: none;" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D6A64A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 0 0-14-5l-2 2"></path><path d="M4 4v4h4"></path><path d="M4 13a8 8 0 0 0 14 5l2-2"></path><path d="M20 20v-4h-4"></path></svg></span><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 22px;">Blog traffic and retargeting</span><span style="font-size: 15px; line-height: 1.5; color: #5A6A83;">Ads to the blog to filter opportunities, then conversion ads to bring them back.</span></div>
+<div style="border: 1.5px solid #5A6A83; border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 10px;"><span style="width: 44px; height: 44px; border-radius: 12px; background: #0C1626; display: flex; align-items: center; justify-content: center; flex: none;" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D6A64A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h18l-7 9v6l-4 2v-8z"></path></svg></span><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 22px;">Lead filtering and qualification</span><span style="font-size: 15px; line-height: 1.5; color: #5A6A83;">Filter-based forms, every lead into Super Systems, and daily calls by virtual agents.</span></div>
+<div style="border: 1.5px solid #5A6A83; border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 10px;"><span style="width: 44px; height: 44px; border-radius: 12px; background: #0C1626; display: flex; align-items: center; justify-content: center; flex: none;" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D6A64A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21l1-12h4l1 12"></path><path d="M7 9h10l-1-4H8z"></path><path d="M12 5V2"></path></svg></span><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 22px;">The control tower</span><span style="font-size: 15px; line-height: 1.5; color: #5A6A83;">Every campaign monitored, all day.</span></div>
+</div>
+<div class="ph" style="height: 320px;">Real screenshots · Super Systems pipeline and campaign reports</div>
+</div>
+</section>
+<section class="sec" style="padding: 96px 0 0;">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 28px;">
+<div style="display: flex; flex-direction: column; gap: 12px; max-width: 860px;">
+<span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 13px; color: #E4DCCB;">The buyer pyramid</span>
+<h2 class="hm" style="margin: 0; font-family: Jost, sans-serif; font-weight: 500; font-size: 44px; line-height: 1.07; letter-spacing: -0.02em;">Out of every 10,000 people in your market, most campaigns chase the same few. We reach three layers of the pyramid.</h2>
+</div>
+<div class="g3" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px;">
+<div style="background: #D6A64A; color: #0C1626; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px;"><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 44px;">3%</span><span style="font-weight: 600;">Buying now</span><span style="font-size: 15px; line-height: 1.5;">The top of the pyramid, and every developer competes for them. Compelling ads that lead with what makes yours different.</span></div>
+<div style="background: #13223A; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px;"><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 44px;">6%</span><span style="font-weight: 600;">Open to it</span><span style="font-size: 15px; line-height: 1.5; color: #A9B3C4;">Not buying yet, but open. Educational content and blogs that build trust and awareness of the launch.</span></div>
+<div style="background: #13223A; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px;"><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 44px;">30%</span><span style="font-weight: 600;">Not thinking about it yet</span><span style="font-size: 15px; line-height: 1.5; color: #A9B3C4;">Reached through educational marketing and retargeting, so your development is the one they know when they are ready.</span></div>
+</div>
+</div>
+</section>
+<section class="sec" style="padding: 96px 0 0;">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 28px;">
+<div style="display: flex; flex-direction: column; gap: 12px; max-width: 860px;">
+<span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 13px; color: #E4DCCB;">Capture</span>
+<h2 class="hm" style="margin: 0; font-family: Jost, sans-serif; font-weight: 500; font-size: 44px; line-height: 1.07; letter-spacing: -0.02em;">Every lead filtered and qualified before an agent picks up the phone.</h2>
+</div>
+<div class="g4" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px;">
+<div style="border: 1.5px solid #1D2C44; border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 8px;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 10px; color: #D6A64A;">01 · Generate</span><span style="font-size: 16px; line-height: 1.45;">Image ads, social media, sales pack downloads and portal listings.</span></div>
+<div style="border: 1.5px solid #1D2C44; border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 8px;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 10px; color: #D6A64A;">02 · Land</span><span style="font-size: 16px; line-height: 1.45;">Funnel pages built for each buyer type, and a blog that sorts the curious from the serious.</span></div>
+<div style="border: 1.5px solid #1D2C44; border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 8px;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 10px; color: #D6A64A;">03 · Filter</span><span style="font-size: 16px; line-height: 1.45;">Filter-based forms, and every lead straight into Super Systems.</span></div>
+<div style="border: 1.5px solid #1D2C44; border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 8px;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 10px; color: #D6A64A;">04 · Qualify</span><span style="font-size: 16px; line-height: 1.45;">Daily qualification calls by virtual agents, and a live sales pipeline.</span></div>
+</div>
+</div>
+</section>
+<section class="sec" style="padding: 96px 0;">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 28px;">
+<div style="display: flex; flex-direction: column; gap: 12px; max-width: 860px;">
+<span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 13px; color: #E4DCCB;">The control tower</span>
+<h2 class="hm" style="margin: 0; font-family: Jost, sans-serif; font-weight: 500; font-size: 44px; line-height: 1.07; letter-spacing: -0.02em;">Every campaign watched, every vital on one screen, all day.</h2>
+<p style="margin: 0; font-size: 18px; line-height: 1.55; color: #A9B3C4;">An analytical, responsive approach: while the ads run, the control tower monitors spend, leads and sales, and we adjust in real time. You see everything, the moment it happens.</p>
+</div>
+<div class="g2" style="display: grid; grid-template-columns: 3fr 1fr; gap: 16px;">
+<div style="background: #13223A; border: 1.5px solid #1D2C44; border-radius: 18px; padding: 22px; display: flex; flex-direction: column; gap: 16px;">
+<div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 11px; color: #E4DCCB;">Vitals · sample layout</span><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 11px; color: #E4DCCB;"><span class="live" style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #D6A64A; margin-right: 6px;"></span>Monitoring</span></div>
+<div class="g3" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;">
+<sc-for list="{{vitals}}" as="v" hint-placeholder-count="6">
+<div style="background: #0F1B2F; border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 8px;">
+<div style="display: flex; justify-content: space-between; align-items: center;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 10px; color: #E4DCCB;">{{v.name}}</span><span style="width: 8px; height: 8px; border-radius: 50%; background: #D6A64A;"></span></div>
+<span style="font-family: Jost, sans-serif; font-size: 28px; color: #A9B3C4;">[ — ]</span>
+<svg viewBox="0 0 120 24" style="width: 100%; height: 24px;" aria-hidden="true"><path d="{{v.spark}}" fill="none" stroke="#D6A64A" stroke-width="1.5"></path></svg>
+</div>
+</sc-for>
+</div>
+</div>
+<div style="background: #13223A; border: 1.5px solid #1D2C44; border-radius: 18px; padding: 18px; display: flex; flex-direction: column; align-items: center; gap: 8px;">
+<span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 11px; color: #E4DCCB;">Thrust control</span>
+<svg viewBox="0 0 128 285" style="width: 120px; height: auto; display: block;" role="img" aria-label="Thrust lever, open">
+<text x="64" y="24" text-anchor="middle" fill="#E4DCCB" font-size="10" font-family="DM Mono, monospace">FULL THRUST</text>
+<rect x="81" y="40" width="18" height="200" rx="4" fill="#1D2C44"></rect><rect x="81" y="96" width="18" height="144" rx="4" fill="#D6A64A" opacity=".85"></rect>
+<rect x="35" y="37" width="17" height="207" rx="8" fill="#060D18" stroke="#5A6A83" stroke-width="2"></rect>
+<path d="M18 244L43 96" stroke="#A9B3C4" stroke-width="9" stroke-linecap="round"></path><circle cx="18" cy="244" r="9" fill="#22344F" stroke="#A9B3C4"></circle>
+<g transform="translate(43 96)"><rect x="-25" y="-11" width="51" height="23" rx="8" fill="#13223A" stroke="#F2EDE2" stroke-width="2"></rect><path d="M-19 5H19" stroke="#D6A64A" stroke-width="3"></path></g>
+<text x="64" y="274" text-anchor="middle" fill="#D6A64A" font-size="18" font-family="DM Mono, monospace">OPEN</text>
+</svg>
+<span style="font-size: 13px; line-height: 1.45; color: #A9B3C4; text-align: center;">Turn spend up where it sells. Turn it down where it does not.</span>
+</div>
+</div>
+<div class="g3" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px;">
+<sc-for list="{{platforms}}" as="pl" hint-placeholder-count="3">
+<div style="border: 1.5px solid #1D2C44; border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 12px;">
+<span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 22px;">{{pl}}</span>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;">
+<div style="display: flex; flex-direction: column; gap: 4px;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 10px; color: #E4DCCB;">Cost per lead</span><span style="font-family: Jost, sans-serif; font-size: 24px; color: #A9B3C4;">[ — ]</span></div>
+<div style="display: flex; flex-direction: column; gap: 4px;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 10px; color: #E4DCCB;">Cost per click</span><span style="font-family: Jost, sans-serif; font-size: 24px; color: #A9B3C4;">[ — ]</span></div>
+<div style="display: flex; flex-direction: column; gap: 4px;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 10px; color: #E4DCCB;">Cost per 1,000 views</span><span style="font-family: Jost, sans-serif; font-size: 24px; color: #A9B3C4;">[ — ]</span></div>
+<div style="display: flex; flex-direction: column; gap: 4px;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 10px; color: #E4DCCB;">Lead to sale</span><span style="font-family: Jost, sans-serif; font-size: 24px; color: #A9B3C4;">[ — ]</span></div>
+</div>
+</div>
+</sc-for>
+</div>
+<div class="g2" style="display: grid; grid-template-columns: 1fr 2fr; gap: 32px; align-items: center; margin-top: 16px;">
+<div style="display: flex; justify-content: center;"><div style="width: 100%; max-width: 360px; aspect-ratio: 1; border-radius: 50%; background: #0F1B2F; color: #D6A64A;" role="img" aria-label="Lead radar: each dot is a new enquiry, the closer to the centre, the more qualified">
+<svg viewBox="0 0 200 200" style="width: 100%; height: 100%; display: block; overflow: visible;" aria-hidden="true">
+<circle cx="100" cy="100" r="87" fill="#D6A64A" fill-opacity="0.06"></circle>
+<circle cx="100" cy="100" r="24" fill="none" stroke="#D6A64A" stroke-opacity="0.32"></circle>
+<circle cx="100" cy="100" r="45" fill="none" stroke="#D6A64A" stroke-opacity="0.32"></circle>
+<circle cx="100" cy="100" r="66" fill="none" stroke="#D6A64A" stroke-opacity="0.32"></circle>
+<circle cx="100" cy="100" r="87" fill="none" stroke="#D6A64A" stroke-opacity="0.75" stroke-width="1.9"></circle>
+<line x1="100" y1="13" x2="100" y2="187" stroke="#D6A64A" stroke-opacity="0.2"></line>
+<line x1="13" y1="100" x2="187" y2="100" stroke="#D6A64A" stroke-opacity="0.2"></line>
+<g class="sweep"><path d="M100 100 L100 13 A87 87 0 0 0 49.4 29.2 Z" fill="#D6A64A" fill-opacity="0.18"></path><line x1="100" y1="100" x2="100" y2="13" stroke="#D6A64A" stroke-width="1.8"></line></g>
+<g transform="translate(118.1 32.4)"><circle r="4" fill="#5A6A83"></circle></g><g transform="translate(153.7 69.0)"><circle r="4" fill="#F2EDE2"></circle></g><g transform="translate(139.8 103.5)"><circle class="ping" r="5" fill="none" stroke="#D6A64A" stroke-width="2"></circle><circle r="5.5" fill="#D6A64A"></circle></g><g transform="translate(138.0 165.8)"><circle r="4" fill="#5A6A83"></circle></g><g transform="translate(94.9 157.8)"><circle r="4" fill="#F2EDE2"></circle></g><g transform="translate(80.7 123.0)"><circle r="4" fill="#D6A64A"></circle></g><g transform="translate(28.3 106.3)"><circle r="4" fill="#5A6A83"></circle></g><g transform="translate(58.4 76.0)"><circle class="ping" r="5" fill="none" stroke="#D6A64A" stroke-width="2"></circle><circle r="5.5" fill="#F2EDE2"></circle></g><g transform="translate(77.4 38.0)"><circle r="4" fill="#5A6A83"></circle></g><g transform="translate(171.0 141.0)"><circle r="4" fill="#5A6A83"></circle></g><g transform="translate(71.3 178.9)"><circle r="4" fill="#5A6A83"></circle></g><g transform="translate(120.6 70.5)"><circle r="4" fill="#F2EDE2"></circle></g>
+</svg>
+</div></div>
+<div style="display: flex; flex-direction: column; gap: 12px;">
+<span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 13px; color: #E4DCCB;">The lead radar</span>
+<h3 style="margin: 0; font-family: Jost, sans-serif; font-weight: 500; font-size: 32px; line-height: 1.15;">Every enquiry on the radar the moment it lands.</h3>
+<p style="margin: 0; font-size: 17px; line-height: 1.55; color: #A9B3C4;">Each dot is a lead. Filtered and qualified leads move to the centre, so the team calls the right people first.</p>
+</div>
+</div>
+<span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 11px; color: #A9B3C4;">Real averages from our ad accounts go here · waiting for the team</span>
+</div>
+</section>
+
+<section class="sec" style="background: #E4DCCB; color: #0C1626; padding: 80px 0;">
+<div class="wrap g2" style="display: grid; grid-template-columns: 2fr 3fr; gap: 40px; align-items: start;">
+<div style="display: flex; flex-direction: column; gap: 12px;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 12px;">Return on investment</span><h2 class="hm" style="margin: 0; font-family: Jost, sans-serif; font-weight: 500; font-size: 44px; line-height: 1.07; letter-spacing: -0.02em;">What this stage adds to your business value.</h2></div>
+<div style="display: flex; flex-direction: column;">
+<div style="display: flex; gap: 14px; align-items: baseline; padding: 16px 0; border-bottom: 1.5px solid #D3C9B4;"><span style="width: 10px; height: 10px; border-radius: 50%; background: #0C1626; flex: none;"></span><span style="font-family: Jost, sans-serif; font-size: 22px; line-height: 1.3;">A lower cost per sale, not just per lead</span></div>
+<div style="display: flex; gap: 14px; align-items: baseline; padding: 16px 0; border-bottom: 1.5px solid #D3C9B4;"><span style="width: 10px; height: 10px; border-radius: 50%; background: #0C1626; flex: none;"></span><span style="font-family: Jost, sans-serif; font-size: 22px; line-height: 1.3;">Spend moved to what sells, every week</span></div>
+<div style="display: flex; gap: 14px; align-items: baseline; padding: 16px 0; border-bottom: 1.5px solid #D3C9B4;"><span style="width: 10px; height: 10px; border-radius: 50%; background: #0C1626; flex: none;"></span><span style="font-family: Jost, sans-serif; font-size: 22px; line-height: 1.3;">No leads paid for and then lost</span></div>
+</div>
+</div>
+</section>
+
+<section class="sec" style="background: #F2EDE2; color: #0C1626; padding: 72px 0;">
+<div class="wrap g3" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px;">
+<div style="background: #0C1626; color: #F2EDE2; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 8px;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 11px; color: #E4DCCB;">AI organises</span><span style="font-size: 17px; line-height: 1.5;">Every enquiry from every channel, filtered, tagged and followed up.</span></div>
+<div style="background: #E4DCCB; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 8px;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 11px;">People fly the plane</span><span style="font-size: 17px; line-height: 1.5;">Our team tunes the campaigns. Agents talk to the buyers.</span></div>
+<div style="background: #D6A64A; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 8px;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 11px;">You see everything</span><span style="font-size: 17px; line-height: 1.5;">Live on your dashboards, all the time.</span></div>
+</div>
+</section>
+
+<section class="sec" style="padding: 88px 0 0;">
+<div class="wrap g2" style="display: grid; grid-template-columns: 3fr 2fr; gap: 16px; align-items: stretch;">
+<div style="border: 1.5px solid #1D2C44; border-radius: 20px; padding: 30px; display: flex; flex-direction: column; gap: 12px;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 11px; color: #E4DCCB;">In a sentence</span><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 26px; line-height: 1.3;">Spending on marketing is not the problem. Not knowing what it buys is. So the numbers stay open, and if anything ever feels unfair, stop us.</span></div>
+<div style="background: #13223A; border-radius: 20px; padding: 30px; display: flex; flex-direction: column; gap: 12px;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 11px; color: #D6A64A;">A question for you</span><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 24px; line-height: 1.3;">What happens to the leads nobody follows up this week?</span></div>
+</div>
+</section>
+
+<section class="sec" style="padding: 80px 0;">
+<div class="wrap">
+<a href="Launch.dc.html" style="text-decoration: none; color: #F2EDE2; background: #13223A; border: 1.5px solid #1D2C44; border-radius: 20px; padding: 32px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px;">
+<span style="display: flex; flex-direction: column; gap: 6px;"><span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 11px; color: #E4DCCB;">Next · Stage 04 · Launch</span><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 30px;">Prop Launch: build the queue, then run the launch race.</span></span>
+<span style="color: #0C1626; background: #D6A64A; font-weight: 600; border-radius: 999px; padding: 14px 22px;">Continue</span>
+</a>
+</div>
+</section>
+<footer class="wrap" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; padding-top: 28px; padding-bottom: 28px; border-top: 1.5px solid #1D2C44;">
+<img src="/_blob/d2b7509f808bfab0319b785bd9941150" alt="metadology" style="width: 120px; height: auto; display: block;">
+<span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 11px; color: #A9B3C4;">From land to brand to business value, and beyond</span>
+<a href="Main.dc.html#close" style="color: #0C1626; background: #D6A64A; text-decoration: none; font-weight: 600; border-radius: 999px; padding: 12px 20px;">Ask your Metadology associate for a walkthrough</a>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":7300}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const cur = 2;
+    const names = ['Pre-flight', 'Take-off', 'Climb', 'Launch', 'Cruise', 'Navigation', 'Landing', 'Next flight'];
+    const files = ['PreFlight', 'TakeOff', 'Climb', 'Launch', 'Cruise', 'Navigation', 'Landing', 'NextFlight'];
+    const angles = [0, 7, 13, 20, 26, 32, 39, 45];
+    const meanings = ['Brand and plan', 'Website and funnels', 'Finding buyers', 'Queue and race', 'Sales and momentum', '3D and one record', 'Close and transfer', 'After sales'];
+    const track = names.map((n, i) => ({
+      name: n, meaning: meanings[i], file: files[i] + '.dc.html', ang: angles[i], here: i === cur,
+      dot: i <= cur ? '#D6A64A' : '#1D2C44',
+      lineL: i === 0 ? 'transparent' : (i <= cur ? '#D6A64A' : '#1D2C44'),
+      lineR: i === names.length - 1 ? 'transparent' : (i < cur ? '#D6A64A' : '#1D2C44'),
+      fg: i === cur ? '#F2EDE2' : '#A9B3C4'
+    }));
+    const readout = "LIFT 13° · CLIMBING · FINDING BUYERS";
+    const dark = { bg: '#0C1626', fg: '#F2EDE2', arrow: '#D6A64A' };
+    const light = { bg: '#E4DCCB', fg: '#0C1626', arrow: '#5A6A83' };
+    const forces = [
+      Object.assign({ name: 'Thrust', rot: 0, line: 'Momentum from marketing triggers that keep the right buyers flowing in.' }, dark),
+      Object.assign({ name: 'Lift', rot: -90, line: 'Marketing power: visibility on every channel buyers use, building demand.' }, dark),
+      Object.assign({ name: 'Drag', rot: 180, line: 'Friction: paying for marketing you cannot see the result of. That is the old route.' }, light),
+      Object.assign({ name: 'Weight', rot: 90, line: 'Sorting and calling every lead yourself.' }, light)
+    ];
+    const platforms = ['Facebook and Instagram', 'Google', 'Property portals'];
+    const sp = (k) => { let d = 'M0 ' + (16 - (k % 5)); for (let i = 1; i <= 12; i++) d += ' L' + (i * 10) + ' ' + (4 + ((i * 7 + k * 5) % 15)); return d; };
+    const vitals = ['Spend today', 'Leads today', 'Cost per lead', 'Viewings booked', 'Pipeline value', 'Reservations'].map((n, k) => ({ name: n, spark: sp(k) }));
+    return { track, readout, forces, platforms, vitals };
+  }
+}
+</script>
+</body>
+</html>

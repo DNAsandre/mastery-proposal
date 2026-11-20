@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>From land to brand to business value</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&amp;family=Hanken+Grotesk:wght@400;500;600&amp;family=DM+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0;background:#0C1626}
+a{color:#D6A64A}a:hover{color:#E6BD6C}
+.wrap{max-width:1200px;margin:0 auto;padding:0 56px;box-sizing:border-box}
+.ph{border:1.5px dashed rgba(90,106,131,.5);border-radius:12px;display:flex;align-items:center;justify-content:center;text-align:center;font-family:"DM Mono",monospace;font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:#5A6A83;padding:16px;box-sizing:border-box}
+.sweep{transform-box:view-box;transform-origin:100px 100px;animation:sweep 4.2s linear infinite}
+@keyframes sweep{to{transform:rotate(360deg)}}
+.ping{transform-box:fill-box;transform-origin:center;animation:ping 2.6s ease-out infinite}
+@keyframes ping{from{transform:scale(1);opacity:.9}to{transform:scale(3);opacity:0}}
+.live{animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.lit{animation:litfloat 2.6s ease-in-out infinite;box-shadow:0 10px 0 -4px #D6A64A}
+@keyframes litfloat{0%,100%{transform:translateY(-6px)}50%{transform:translateY(-14px)}}
+.fly{animation:flyin 3.2s ease-in-out infinite}
+@keyframes flyin{0%,100%{transform:translate(0,0)}50%{transform:translate(4px,-4px)}}
+@media (prefers-reduced-motion:reduce){.sweep,.ping,.live,.lit,.fly{animation:none}}
+@media (max-width:820px){.wrap{padding:0 16px}.g2,.g3,.g4,.g6{grid-template-columns:1fr !important}.hxl{font-size:38px !important}.hm{font-size:32px !important}.sec{padding:64px 0 !important}}
+</style>
+</helmet>
+<div style="font-family: 'Hanken Grotesk', Arial, sans-serif; color: #F2EDE2; background: #0C1626; min-height: 100vh;">
+<div style="background: #E4DCCB; color: #0C1626;">
+<div class="wrap" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; padding-top: 10px; padding-bottom: 10px;">
+<span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 12px;">Mock-up of the structure · Amberly finishes the look</span>
+<a href="Notes.dc.html" style="background: #0C1626; color: #F2EDE2; text-decoration: none; font-weight: 600; font-size: 14px; border-radius: 999px; padding: 12px 18px;">Notes and red flags</a>
+</div>
+</div>
+<header style="position: sticky; top: 0; z-index: 30; background: #0C1626; border-bottom: 1.5px solid #1D2C44;">
+<div class="wrap" style="display: flex; flex-wrap: wrap; align-items: center; gap: 20px; padding-top: 10px; padding-bottom: 10px;">
+<a href="Main.dc.html"><img src="/_blob/d2b7509f808bfab0319b785bd9941150" alt="metadology home" style="width: 124px; height: auto; display: block;"></a>
+<nav aria-label="Flight tracker" style="flex: 1 1 0; display: flex; min-width: 0;">
+<sc-for list="{{track}}" as="t" hint-placeholder-count="8">
+<a href="{{t.file}}" style="flex: 1 1 0; min-width: 0; text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 4px;">
+<span style="height: 30px; display: flex; align-items: flex-end;">
+<sc-if value="{{t.here}}" hint-placeholder-val="{{false}}"><svg width="40" height="30" viewBox="-40 -24 80 48" aria-hidden="true"><g transform="rotate(-{{t.ang}}) scale(.5)"><path d="M-65 0 L-45 -3 L-55 -23 L-43 -23 L-22 -6 L20 -7 L34 -12 L48 -10 Q68 -8 76 0 Q76 5 59 7 L8 9 L-9 22 L-27 22 L-15 8 L-47 6 L-65 0Z" fill="#D6A64A"></path></g></svg></sc-if>
+</span>
+<span style="display: flex; align-items: center; width: 100%;"><span style="flex: 1; height: 2px; background: {{t.lineL}};"></span><span style="width: 10px; height: 10px; border-radius: 50%; background: {{t.dot}}; flex: none;"></span><span style="flex: 1; height: 2px; background: {{t.lineR}};"></span></span>
+<span style="font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: {{t.fg}}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%;">{{t.name}}</span>
+<span style="font-size: 11px; line-height: 1.2; color: {{t.fg}}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%;">{{t.meaning}}</span>
+</a>
+</sc-for>
+</nav>
+<span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 11px; color: #E4DCCB; flex: 1 0 100%;">{{readout}}</span>
+</div>
+</header>
+<!-- Hero -->
+<section class="sec" style="position: relative; overflow: hidden; padding: 72px 0 104px;">
+<div style="position: absolute; right: -200px; bottom: -280px; width: 760px; height: 760px; border-radius: 50%; background: radial-gradient(closest-side, rgba(214,166,74,.26), rgba(214,166,74,0));" aria-hidden="true"></div>
+<div class="wrap g2" style="position: relative; display: grid; grid-template-columns: 5fr 6fr; gap: 48px; align-items: center;">
+<div style="display: flex; flex-direction: column; gap: 22px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: .09em; text-transform: uppercase; color: #E4DCCB;">For developers · The whole journey</span>
+<p style="margin: 0; font-family: Jost, sans-serif; font-size: 22px; line-height: 1.35; color: #E4DCCB;">Developers hold eight departments together, on their own.</p>
+<h1 class="hxl" style="margin: 0; font-family: Jost, sans-serif; font-weight: 500; font-size: 64px; line-height: 1.03; letter-spacing: -0.025em;">From land to brand to business value, and beyond.</h1>
+<p style="margin: 0; font-size: 19px; line-height: 1.55; color: #A9B3C4; max-width: 540px;">One integrated solution for your development: the 3D build, brand, marketing, launch, sales and data, run as one by one team. Every control and every number in front of you.</p>
+<div style="display: flex; gap: 14px; flex-wrap: wrap;">
+<a href="#stages" style="color: #0C1626; background: #D6A64A; text-decoration: none; font-weight: 600; border-radius: 999px; padding: 16px 24px;">See the eight stages</a>
+<a href="#close" style="color: #F2EDE2; border: 1.5px solid #E4DCCB; text-decoration: none; font-weight: 600; border-radius: 999px; padding: 15px 24px;">Ask for a walkthrough</a>
+</div>
+</div>
+<svg viewBox="0 0 640 440" style="width: 100%; height: auto; display: block;" role="img" aria-label="A person seated in a cockpit, looking out at the horizon, with eight dials in front for the eight departments of a development">
+<path d="M70 30 L570 30 L620 250 L20 250 Z" fill="#13223A" stroke="#1D2C44" stroke-width="2"></path>
+<line x1="320" y1="30" x2="320" y2="250" stroke="#1D2C44" stroke-width="6"></line>
+<line x1="34" y1="180" x2="606" y2="180" stroke="#E4DCCB" stroke-width="1"></line>
+<g fill="#22344F"><rect x="402" y="120" width="34" height="60"></rect><rect x="440" y="100" width="40" height="80"></rect><rect x="484" y="132" width="28" height="48"></rect></g>
+<rect x="440" y="140" width="40" height="10" fill="#D6A64A"></rect>
+<path d="M120 180 Q320 40 520 180" fill="none" stroke="#E4DCCB" stroke-width="1.5" stroke-dasharray="2 6"></path>
+<circle cx="372" cy="92" r="12" fill="#D6A64A"></circle>
+<text x="120" y="168" font-family="DM Mono, monospace" font-size="11" letter-spacing="1" fill="#E4DCCB">DESTINATION · SOLD OUT, AT THE RIGHT PRICE</text>
+<rect x="0" y="250" width="640" height="190" rx="22" fill="#0F1B2F" stroke="#1D2C44" stroke-width="2"></rect>
+<g font-family="DM Mono, monospace" font-size="9" letter-spacing="1" fill="#E4DCCB" text-anchor="middle">
+<circle cx="62" cy="300" r="24" fill="#13223A" stroke="#D6A64A" stroke-width="2"></circle><line x1="62" y1="300" x2="74" y2="288" stroke="#F2EDE2" stroke-width="2"></line><text x="62" y="342">BRAND</text>
+<circle cx="152" cy="300" r="24" fill="#13223A" stroke="#D6A64A" stroke-width="2"></circle><line x1="152" y1="300" x2="160" y2="284" stroke="#F2EDE2" stroke-width="2"></line><text x="152" y="342">MARKETING</text>
+<circle cx="62" cy="388" r="24" fill="#13223A" stroke="#D6A64A" stroke-width="2"></circle><line x1="62" y1="388" x2="78" y2="382" stroke="#F2EDE2" stroke-width="2"></line><text x="62" y="430">ADVERTS</text>
+<circle cx="152" cy="388" r="24" fill="#13223A" stroke="#D6A64A" stroke-width="2"></circle><line x1="152" y1="388" x2="146" y2="372" stroke="#F2EDE2" stroke-width="2"></line><text x="152" y="430">AGENTS</text>
+<circle cx="488" cy="300" r="24" fill="#13223A" stroke="#D6A64A" stroke-width="2"></circle><line x1="488" y1="300" x2="502" y2="292" stroke="#F2EDE2" stroke-width="2"></line><text x="488" y="342">BUYERS</text>
+<circle cx="578" cy="300" r="24" fill="#13223A" stroke="#D6A64A" stroke-width="2"></circle><line x1="578" y1="300" x2="582" y2="283" stroke="#F2EDE2" stroke-width="2"></line><text x="578" y="342">FINANCE</text>
+<circle cx="488" cy="388" r="24" fill="#13223A" stroke="#D6A64A" stroke-width="2"></circle><line x1="488" y1="388" x2="472" y2="378" stroke="#F2EDE2" stroke-width="2"></line><text x="488" y="430">3D BUILD</text>
+<circle cx="578" cy="388" r="24" fill="#13223A" stroke="#D6A64A" stroke-width="2"></circle><line x1="578" y1="388" x2="594" y2="380" stroke="#F2EDE2" stroke-width="2"></line><text x="578" y="430">REPORTS</text>
+</g>
+<g fill="#22344F"><circle cx="320" cy="300" r="34"></circle><path d="M228 440 Q232 352 320 344 Q408 352 412 440 Z"></path></g>
+</svg>
+</div>
+</section>
+
+<!-- Where risk and reward meet -->
+<section class="sec" style="background: #F2EDE2; color: #0C1626; padding: 104px 0;">
+<div class="wrap g2" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 56px; align-items: center;">
+<div style="display: flex; flex-direction: column; gap: 16px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: .09em; text-transform: uppercase; color: #5A6A83;">The developer's seat</span>
+<h2 class="hm" style="margin: 0; font-family: Jost, sans-serif; font-weight: 500; font-size: 46px; line-height: 1.06; letter-spacing: -0.02em;">Three worlds meet in one seat. It is the only place where risk and reward come together.</h2>
+<p style="margin: 0; font-size: 19px; line-height: 1.55; color: #5A6A83;">Commercial, technical and statutory, each with its own people, its own pace and its own paper. Development is a marathon of managing change, and the whole game is managing friction.</p>
+<p style="margin: 0; font-size: 19px; line-height: 1.55;">Every stage that follows takes friction out of that seat, and puts control back in it.</p>
+</div>
+<svg viewBox="0 0 460 420" style="width: 100%; height: auto; display: block;" role="img" aria-label="Three overlapping circles: commercial, technical and statutory. The developer sits where all three overlap.">
+<circle cx="230" cy="150" r="120" fill="#0C1626" fill-opacity=".08" stroke="#0C1626" stroke-width="1.5"></circle>
+<circle cx="160" cy="270" r="120" fill="#0C1626" fill-opacity=".08" stroke="#0C1626" stroke-width="1.5"></circle>
+<circle cx="300" cy="270" r="120" fill="#0C1626" fill-opacity=".08" stroke="#0C1626" stroke-width="1.5"></circle>
+<circle cx="230" cy="228" r="34" fill="#D6A64A"></circle>
+<text x="230" y="224" text-anchor="middle" font-family="DM Mono, monospace" font-size="10" letter-spacing="1" fill="#0C1626">RISK AND</text>
+<text x="230" y="238" text-anchor="middle" font-family="DM Mono, monospace" font-size="10" letter-spacing="1" fill="#0C1626">REWARD</text>
+<g font-family="Jost, sans-serif" font-size="20" fill="#0C1626" text-anchor="middle"><text x="230" y="72">Commercial</text><text x="110" y="330">Technical</text><text x="350" y="330">Statutory</text></g>
+<g font-family="Hanken Grotesk, sans-serif" font-size="12" fill="#5A6A83" text-anchor="middle"><text x="230" y="92">banks · attorneys · buyers</text><text x="110" y="350">engineers · architects</text><text x="350" y="350">planning · environment · heritage</text></g>
+</svg>
+</div>
+</section>
+
+<!-- It starts with the land -->
+<section class="sec" style="background: #E4DCCB; color: #0C1626; padding: 96px 0;">
+<div class="wrap g2" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; align-items: center;">
+<div style="display: flex; flex-direction: column; gap: 14px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: .09em; text-transform: uppercase;">It starts with the land</span>
+<h2 class="hm" style="margin: 0; font-family: Jost, sans-serif; font-weight: 500; font-size: 46px; line-height: 1.06; letter-spacing: -0.02em;">Walk through your development before you break ground.</h2>
+<p style="margin: 0; font-size: 19px; line-height: 1.55;">Metadology builds your whole development virtually, from the plans you already have. Every wall, wire and window. That one model then feeds your brand, your marketing, your launch and your build. Sell the apartment before the slab is poured.</p>
+</div>
+<div class="ph" style="height: 340px; border-color: rgba(12,22,38,.35); color: #0C1626;">Real Metadology 3D walkthrough · golden hour render</div>
+</div>
+</section>
+
+<!-- The four forces -->
+<section class="sec" style="padding: 104px 0;">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 36px;">
+<div style="display: flex; flex-direction: column; gap: 14px; max-width: 880px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: .09em; text-transform: uppercase; color: #E4DCCB;">Thrust · Lift · Drag · Weight</span>
+<h2 class="hm" style="margin: 0; font-family: Jost, sans-serif; font-weight: 500; font-size: 46px; line-height: 1.06; letter-spacing: -0.02em;">Where is your development right now?</h2>
+<p style="margin: 0; font-size: 19px; line-height: 1.55; color: #A9B3C4;">Drag and weight hold every developer back. With AI behind every stage, thrust and lift are amplified.</p>
+</div>
+<div class="g2" style="display: grid; grid-template-columns: 3fr 1fr; gap: 16px;">
+<svg viewBox="0 0 700 510" style="width: 100%; height: auto; display: block;" role="img" aria-label="Four zones. Top right, lift and thrust: selling fast at the right price, where the plane is climbing. Top left, lift and drag: strong brand, slow sales. Bottom right, weight and thrust: busy, but margins sinking. Bottom left, weight and drag: stuck on the ground.">
+<rect width="700" height="510" rx="16" fill="#0F1B2F"></rect>
+<rect x="40" y="40" width="310" height="215" fill="#E4DCCB" opacity=".10"></rect>
+<rect x="350" y="40" width="310" height="215" fill="#D6A64A" opacity=".28"></rect>
+<rect x="40" y="255" width="310" height="215" fill="#060D18" opacity=".7"></rect>
+<rect x="350" y="255" width="310" height="215" fill="#060D18" opacity=".45"></rect>
+<path d="M40 255H660 M350 40V470" stroke="#5A6A83" stroke-width="1.5"></path>
+<g font-family="DM Mono, monospace" font-size="12" letter-spacing="1" fill="#E4DCCB">
+<text x="56" y="66">LIFT + DRAG</text><text x="56" y="86" font-family="Hanken Grotesk, sans-serif" font-size="16" letter-spacing="0" fill="#F2EDE2">Strong brand, slow sales</text>
+<text x="644" y="66" text-anchor="end">LIFT + THRUST</text><text x="644" y="86" text-anchor="end" font-family="Hanken Grotesk, sans-serif" font-size="16" letter-spacing="0" fill="#F2EDE2">Selling fast, at the right price</text>
+<text x="56" y="430">WEIGHT + DRAG</text><text x="56" y="450" font-family="Hanken Grotesk, sans-serif" font-size="16" letter-spacing="0" fill="#F2EDE2">Stuck on the ground</text>
+<text x="644" y="430" text-anchor="end">WEIGHT + THRUST</text><text x="644" y="450" text-anchor="end" font-family="Hanken Grotesk, sans-serif" font-size="16" letter-spacing="0" fill="#F2EDE2">Busy, but margins sinking</text>
+</g>
+<g font-family="DM Mono, monospace" font-size="12" letter-spacing="1" fill="#A9B3C4"><text x="350" y="26" text-anchor="middle">LIFT ↑</text><text x="350" y="496" text-anchor="middle">WEIGHT ↓</text><text x="48" y="246">← DRAG</text><text x="652" y="246" text-anchor="end">THRUST →</text></g>
+<g opacity=".3" transform="translate(240 350) rotate(30) scale(.42)"><path d="M-65 0 L-45 -3 L-55 -23 L-43 -23 L-22 -6 L20 -7 L34 -12 L48 -10 Q68 -8 76 0 Q76 5 59 7 L8 9 L-9 22 L-27 22 L-15 8 L-47 6 L-65 0Z" fill="#F2EDE2"></path></g>
+<path d="M265 340 Q400 260 515 150" fill="none" stroke="#F2EDE2" stroke-dasharray="4 6" opacity=".5"></path>
+<circle cx="530" cy="140" r="44" fill="#D6A64A" opacity=".18"></circle>
+<g transform="translate(530 140) rotate(-35) scale(.6)"><path d="M-65 0 L-45 -3 L-55 -23 L-43 -23 L-22 -6 L20 -7 L34 -12 L48 -10 Q68 -8 76 0 Q76 5 59 7 L8 9 L-9 22 L-27 22 L-15 8 L-47 6 L-65 0Z" fill="#F2EDE2" stroke="#D6A64A" stroke-width="2"></path></g>
+<text x="246" y="392" font-family="DM Mono, monospace" font-size="11" fill="#A9B3C4">TODAY</text>
+<text x="574" y="112" font-family="DM Mono, monospace" font-size="11" fill="#D6A64A">WITH US</text>
+</svg>
+<div style="background: #13223A; border: 1.5px solid #1D2C44; border-radius: 16px; padding: 18px; display: flex; flex-direction: column; align-items: center; gap: 10px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: .09em; color: #E4DCCB;">LIFT</span>
+<svg viewBox="0 0 128 285" style="width: 110px; height: auto; display: block;" role="img" aria-label="Lift gauge, nose up">
+<rect x="73" y="40" width="18" height="200" rx="4" fill="#1D2C44"></rect><rect x="73" y="40" width="18" height="100" rx="4" fill="#D6A64A" opacity=".85"></rect>
+<path d="M4 140H96" stroke="#F2EDE2" stroke-dasharray="3 3" opacity=".7"></path><text x="6" y="133" font-size="10" fill="#E4DCCB" font-family="DM Mono, monospace">LEVEL</text>
+<g transform="translate(43 84)"><path d="M-35 0H36" stroke="#F2EDE2" stroke-width="2"></path><g transform="rotate(-25) scale(.42)"><path d="M-65 0 L-45 -3 L-55 -23 L-43 -23 L-22 -6 L20 -7 L34 -12 L48 -10 Q68 -8 76 0 Q76 5 59 7 L8 9 L-9 22 L-27 22 L-15 8 L-47 6 L-65 0Z" fill="#F2EDE2"></path></g></g>
+</svg>
+<span style="font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: .09em; color: #E4DCCB;">THRUST</span>
+<div style="width: 100%; height: 10px; border-radius: 10px; background: #1D2C44;"><div style="width: 78%; height: 10px; border-radius: 10px; background: #D6A64A;"></div></div>
+<span style="font-size: 13px; line-height: 1.45; color: #A9B3C4; text-align: center;">Illustration · each development is measured on its own numbers</span>
+</div>
+</div>
+<div class="g4" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px;">
+<sc-for list="{{forces}}" as="f" hint-placeholder-count="4">
+<div style="background: {{f.bg}}; color: {{f.fg}}; border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 10px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: .09em; text-transform: uppercase;">{{f.name}}</span>
+<span style="font-size: 16px; line-height: 1.5;">{{f.line}}</span>
+</div>
+</sc-for>
+</div>
+</div>
+</section>
+
+<!-- Road or air -->
+<section class="sec" style="background: #E4DCCB; color: #0C1626; padding: 96px 0;">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 36px;">
+<div style="display: flex; flex-direction: column; gap: 14px; max-width: 900px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: .09em; text-transform: uppercase;">Road or air</span>
+<h2 class="hm" style="margin: 0; font-family: Jost, sans-serif; font-weight: 500; font-size: 46px; line-height: 1.06; letter-spacing: -0.02em;">Separate suppliers keep a development on the road. The same journey takes twenty times longer.</h2>
+<p style="margin: 0; font-size: 19px; line-height: 1.55;">Half a marketing team and half a sales solution is not half the result. It does not leave the ground. So we never split the difference.</p>
+</div>
+<div class="g2" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px;">
+<div style="background: #F2EDE2; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 10px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: .09em;">BY ROAD · SEPARATE SUPPLIERS</span>
+<span style="font-size: 17px; line-height: 1.5;">Every department on its own road. Every stop, a meeting. Every report, by hand. The buyers who were ready last month have already bought somewhere else.</span>
+</div>
+<div style="background: #0C1626; color: #F2EDE2; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 10px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: .09em; color: #D6A64A;">BY AIR · ONE INTEGRATED TEAM</span>
+<span style="font-size: 17px; line-height: 1.5;">One team, one plan, one view of everything. You see the whole route from above, and you sell while the market is still waiting for you.</span>
+</div>
+</div>
+</div>
+</section>
+
+<!-- What you may be thinking -->
+<section class="sec" style="background: #F2EDE2; color: #0C1626; padding: 96px 0;">
+<div class="wrap g2" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; align-items: start;">
+<div style="display: flex; flex-direction: column; gap: 14px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: .09em; text-transform: uppercase; color: #5A6A83;">What you may be thinking</span>
+<h2 class="hm" style="margin: 0; font-family: Jost, sans-serif; font-weight: 500; font-size: 46px; line-height: 1.06; letter-spacing: -0.02em;">You have heard big promises before.</h2>
+<p style="margin: 0; font-size: 19px; line-height: 1.55; color: #5A6A83;">That is fair. So this is a service, not more software. Your own people run it and get faster. Your data stays yours, ready to take with you at any time. Every number is open, and every decision stays yours.</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px;">
+<div style="border: 1.5px solid #5A6A83; border-radius: 14px; padding: 18px 20px; font-family: Jost, sans-serif; font-size: 20px;">&#8220;Another agency that promises the world.&#8221;</div>
+<div style="border: 1.5px solid #5A6A83; border-radius: 14px; padding: 18px 20px; font-family: Jost, sans-serif; font-size: 20px;">&#8220;Another system my team will never use.&#8221;</div>
+<div style="border: 1.5px solid #5A6A83; border-radius: 14px; padding: 18px 20px; font-family: Jost, sans-serif; font-size: 20px;">&#8220;This will replace my marketing people.&#8221;</div>
+<div style="border: 1.5px solid #5A6A83; border-radius: 14px; padding: 18px 20px; font-family: Jost, sans-serif; font-size: 20px;">&#8220;I will be locked in, and lose control of my own development.&#8221;</div>
+<div style="border: 1.5px solid #5A6A83; border-radius: 14px; padding: 18px 20px; font-family: Jost, sans-serif; font-size: 20px;">&#8220;I will pay and never see what it bought.&#8221;</div>
+</div>
+</div>
+</section>
+
+<!-- The eight stages -->
+<section id="stages" class="sec" style="padding: 112px 0;">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 40px;">
+<div style="display: flex; flex-direction: column; gap: 14px; max-width: 880px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: .09em; text-transform: uppercase; color: #E4DCCB;">The flight path</span>
+<h2 class="hm" style="margin: 0; font-family: Jost, sans-serif; font-weight: 500; font-size: 46px; line-height: 1.06; letter-spacing: -0.02em;">Eight stages, from the first research to your next phase.</h2>
+</div>
+<div class="g4" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px;">
+<sc-for list="{{stages}}" as="s" hint-placeholder-count="8">
+<a href="{{s.file}}" style="text-decoration: none; color: #F2EDE2; background: #13223A; border: 1.5px solid #1D2C44; border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 12px; min-height: 230px; box-sizing: border-box;">
+<span style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;"><span style="font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: .09em; color: #E4DCCB;">STAGE {{s.no}}</span><span style="font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .09em; text-transform: uppercase; color: #0C1626; background: #D6A64A; border-radius: 999px; padding: 3px 8px;">{{s.flight}}</span></span>
+<span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 21px; line-height: 1.25; flex-grow: 1;">{{s.name}}</span>
+<span style="font-size: 14px; line-height: 1.45; color: #A9B3C4;">{{s.roi}}</span>
+</a>
+</sc-for>
+</div>
+</div>
+</section>
+
+<!-- The complete funnel -->
+<section class="sec" style="background: #F2EDE2; color: #0C1626; padding: 104px 0;">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 36px;">
+<div style="display: flex; flex-direction: column; gap: 14px; max-width: 900px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: .09em; text-transform: uppercase; color: #5A6A83;">Capture · Nurture · Close</span>
+<h2 class="hm" style="margin: 0; font-family: Jost, sans-serif; font-weight: 500; font-size: 46px; line-height: 1.06; letter-spacing: -0.02em;">One complete marketing funnel, from the first advert to after sales.</h2>
+<p style="margin: 0; font-size: 19px; line-height: 1.55; color: #5A6A83;">Every lead is captured, filtered, qualified, nurtured and closed in one place, Super Systems, and you see every step.</p>
+</div>
+<div class="g3" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px;">
+<div style="display: flex; flex-direction: column; gap: 10px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: .09em; color: #0C1626; background: #D6A64A; border-radius: 999px; padding: 8px 14px; align-self: flex-start;">CAPTURE</span>
+<div style="background: #0C1626; color: #F2EDE2; border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 4px;"><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 19px;">Lead generation</span><span style="font-size: 14px; line-height: 1.45; color: #A9B3C4;">Image ads, social media, sales pack downloads, portal listings.</span><span style="font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .09em; color: #D6A64A;">TAKE-OFF · CLIMB</span></div>
+<div style="background: #0C1626; color: #F2EDE2; border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 4px;"><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 19px;">Pre-launch and launch campaigns</span><span style="font-size: 14px; line-height: 1.45; color: #A9B3C4;">Funnel pages for each buyer type, a conversion website, retargeting.</span><span style="font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .09em; color: #D6A64A;">TAKE-OFF · LAUNCH</span></div>
+<div style="background: #0C1626; color: #F2EDE2; border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 4px;"><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 19px;">Lead filtering</span><span style="font-size: 14px; line-height: 1.45; color: #A9B3C4;">Filter-based forms, every lead into Super Systems.</span><span style="font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .09em; color: #D6A64A;">CLIMB</span></div>
+<div style="background: #0C1626; color: #F2EDE2; border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 4px;"><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 19px;">Lead qualification</span><span style="font-size: 14px; line-height: 1.45; color: #A9B3C4;">Daily calls by virtual agents, a live sales pipeline.</span><span style="font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .09em; color: #D6A64A;">CLIMB</span></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: .09em; color: #0C1626; background: #D6A64A; border-radius: 999px; padding: 8px 14px; align-self: flex-start;">NURTURE</span>
+<div style="background: #0C1626; color: #F2EDE2; border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 4px;"><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 19px;">Lead nurture</span><span style="font-size: 14px; line-height: 1.45; color: #A9B3C4;">Eight-by-eight email nurture, automations, digital marketing reports.</span><span style="font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .09em; color: #D6A64A;">LAUNCH · CRUISE</span></div>
+<div style="background: #0C1626; color: #F2EDE2; border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 4px;"><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 19px;">Opportunities</span><span style="font-size: 14px; line-height: 1.45; color: #A9B3C4;">Email, WhatsApp and SMS follow-ups, appointments, deal qualification.</span><span style="font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .09em; color: #D6A64A;">LAUNCH · CRUISE · NAVIGATION</span></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: .09em; color: #0C1626; background: #D6A64A; border-radius: 999px; padding: 8px 14px; align-self: flex-start;">CLOSE</span>
+<div style="background: #0C1626; color: #F2EDE2; border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 4px;"><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 19px;">Close</span><span style="font-size: 14px; line-height: 1.45; color: #A9B3C4;">Signed offer to purchase, transaction and conveyance management.</span><span style="font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .09em; color: #D6A64A;">LANDING</span></div>
+<div style="background: #0C1626; color: #F2EDE2; border-radius: 14px; padding: 16px 18px; display: flex; flex-direction: column; gap: 4px;"><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 19px;">After sales</span><span style="font-size: 14px; line-height: 1.45; color: #A9B3C4;">Owners looked after, buyers kept for the next phase.</span><span style="font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .09em; color: #D6A64A;">NEXT FLIGHT</span></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- What each piece removes -->
+<section class="sec" style="background: #E4DCCB; color: #0C1626; padding: 96px 0;">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 32px;">
+<div style="display: flex; flex-direction: column; gap: 14px; max-width: 880px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: .09em; text-transform: uppercase;">In plain words</span>
+<h2 class="hm" style="margin: 0; font-family: Jost, sans-serif; font-weight: 500; font-size: 46px; line-height: 1.06; letter-spacing: -0.02em;">What each piece takes off your desk.</h2>
+</div>
+<div style="display: flex; flex-direction: column;">
+<div class="g2" style="display: grid; grid-template-columns: 2fr 3fr; gap: 24px; padding: 18px 0; border-bottom: 1.5px solid #D3C9B4;"><span style="font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: .09em; text-transform: uppercase; display: flex; align-items: center; gap: 14px;"><span style="width: 44px; height: 44px; border-radius: 12px; background: #0C1626; display: flex; align-items: center; justify-content: center; flex: none;" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D6A64A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M15.5 8.5l-2 5-5 2 2-5z"></path></svg></span>Brand and marketing</span><span style="font-family: Jost, sans-serif; font-size: 22px; line-height: 1.3;">One story, told the same way to buyers, agents and the bank.</span></div>
+<div class="g2" style="display: grid; grid-template-columns: 2fr 3fr; gap: 24px; padding: 18px 0; border-bottom: 1.5px solid #D3C9B4;"><span style="font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: .09em; text-transform: uppercase; display: flex; align-items: center; gap: 14px;"><span style="width: 44px; height: 44px; border-radius: 12px; background: #0C1626; display: flex; align-items: center; justify-content: center; flex: none;" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D6A64A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"></ellipse><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"></path><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"></path></svg></span>Lead generation and CRM</span><span style="font-family: Jost, sans-serif; font-size: 22px; line-height: 1.3;">You see every enquiry, and who followed it up.</span></div>
+<div class="g2" style="display: grid; grid-template-columns: 2fr 3fr; gap: 24px; padding: 18px 0; border-bottom: 1.5px solid #D3C9B4;"><span style="font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: .09em; text-transform: uppercase; display: flex; align-items: center; gap: 14px;"><span style="width: 44px; height: 44px; border-radius: 12px; background: #0C1626; display: flex; align-items: center; justify-content: center; flex: none;" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D6A64A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M8 12l3 3 5-6"></path></svg></span>Launch, reservations and sales</span><span style="font-family: Jost, sans-serif; font-size: 22px; line-height: 1.3;">Live stock. No double-selling. No spreadsheet.</span></div>
+<div class="g2" style="display: grid; grid-template-columns: 2fr 3fr; gap: 24px; padding: 18px 0; border-bottom: 1.5px solid #D3C9B4;"><span style="font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: .09em; text-transform: uppercase; display: flex; align-items: center; gap: 14px;"><span style="width: 44px; height: 44px; border-radius: 12px; background: #0C1626; display: flex; align-items: center; justify-content: center; flex: none;" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D6A64A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="18" r="2.5"></circle><circle cx="18" cy="6" r="2.5"></circle><path d="M8.5 18H15a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h6.5"></path></svg></span>Transaction management</span><span style="font-family: Jost, sans-serif; font-size: 22px; line-height: 1.3;">You see where every deal is stuck, and with whom.</span></div>
+<div class="g2" style="display: grid; grid-template-columns: 2fr 3fr; gap: 24px; padding: 18px 0; border-bottom: 1.5px solid #D3C9B4;"><span style="font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: .09em; text-transform: uppercase; display: flex; align-items: center; gap: 14px;"><span style="width: 44px; height: 44px; border-radius: 12px; background: #0C1626; display: flex; align-items: center; justify-content: center; flex: none;" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D6A64A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V4"></path><path d="M4 20h16"></path><path d="M8 16v-4M12 16V8M16 16v-6"></path></svg></span>Reporting</span><span style="font-family: Jost, sans-serif; font-size: 22px; line-height: 1.3;">One page for you, your funder and your partners.</span></div>
+<div class="g2" style="display: grid; grid-template-columns: 2fr 3fr; gap: 24px; padding: 18px 0; border-bottom: 1.5px solid #D3C9B4;"><span style="font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: .09em; text-transform: uppercase; display: flex; align-items: center; gap: 14px;"><span style="width: 44px; height: 44px; border-radius: 12px; background: #0C1626; display: flex; align-items: center; justify-content: center; flex: none;" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D6A64A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"></path><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"></path></svg></span>The 3D build and one record</span><span style="font-family: Jost, sans-serif; font-size: 22px; line-height: 1.3;">A way to question your own professional team, with the facts in front of you.</span></div>
+<div class="g2" style="display: grid; grid-template-columns: 2fr 3fr; gap: 24px; padding: 18px 0;"><span style="font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: .09em; text-transform: uppercase; display: flex; align-items: center; gap: 14px;"><span style="width: 44px; height: 44px; border-radius: 12px; background: #0C1626; display: flex; align-items: center; justify-content: center; flex: none;" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D6A64A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3L5 14h6l-1 7 8-11h-6z"></path></svg></span>AI</span><span style="font-family: Jost, sans-serif; font-size: 22px; line-height: 1.3;">The paper-pushing done overnight, checked by your people.</span></div>
+</div>
+</div>
+</section>
+
+<!-- AI -->
+<section class="sec" style="background: #E4DCCB; color: #0C1626; padding: 96px 0;">
+<div class="wrap g2" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; align-items: center;">
+<div style="display: flex; flex-direction: column; gap: 14px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: .09em; text-transform: uppercase;">AI-enabled · Human-driven</span>
+<h2 class="hm" style="margin: 0; font-family: Jost, sans-serif; font-weight: 500; font-size: 46px; line-height: 1.06; letter-spacing: -0.02em;">AI organises the whole journey. People fly the plane.</h2>
+<p style="margin: 0; font-size: 19px; line-height: 1.55;">AI is the infrastructure, from the first research to the next phase. Your buyers are people, so people make the calls that matter. That is how you scale at speed.</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 12px;">
+<div style="background: #0C1626; color: #F2EDE2; border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 8px;"><span style="font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: .09em; color: #E4DCCB;">AI · THE INFRASTRUCTURE</span><span style="font-size: 17px; line-height: 1.5;">Organises every stage, every asset and every report. The paper-pushing done overnight, checked by your people.</span></div>
+<div style="background: #F2EDE2; border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 8px;"><span style="font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: .09em; color: #5A6A83;">YOU SEE EVERYTHING</span><span style="font-size: 17px; line-height: 1.5;">Every number, live on your dashboards, all the time.</span></div>
+<div style="background: #D6A64A; border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 8px;"><span style="font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: .09em;">THE RESULT</span><span style="font-size: 17px; line-height: 1.5; font-weight: 600;">Scale at speed.</span></div>
+</div>
+</div>
+</section>
+
+<!-- ROI -->
+<section class="sec" style="padding: 112px 0;">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 36px;">
+<div style="display: flex; flex-direction: column; gap: 14px; max-width: 880px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: .09em; text-transform: uppercase; color: #E4DCCB;">The destination</span>
+<h2 class="hm" style="margin: 0; font-family: Jost, sans-serif; font-weight: 500; font-size: 46px; line-height: 1.06; letter-spacing: -0.02em;">It all comes back to return on investment.</h2>
+<p style="margin: 0; font-size: 19px; line-height: 1.55; color: #A9B3C4;">Every stage adds value to the next, from the land you start with to the business value you end with.</p>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
+<sc-for list="{{chain}}" as="c" hint-placeholder-count="8">
+<span style="display: flex; flex-direction: column; gap: 4px; background: {{c.bg}}; color: {{c.fg}}; border-radius: 16px; padding: 14px 18px;"><span style="font-family: Jost, sans-serif; font-weight: 500; font-size: 20px;">{{c.t}}</span><span style="font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .09em; text-transform: uppercase;">{{c.v}}</span></span>
+</sc-for>
+</div>
+<div style="display: flex; flex-direction: column; gap: 16px; margin-top: 12px;">
+<div style="display: flex; flex-direction: column; gap: 8px;"><span style="font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: .09em; color: #A9B3C4;">BY ROAD · SEPARATE SUPPLIERS</span><div style="height: 14px; width: 100%; background: #1D2C44; border-radius: 14px;"></div></div>
+<div style="display: flex; flex-direction: column; gap: 8px;"><span style="font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: .09em; color: #E4DCCB;">BY AIR · ONE INTEGRATED TEAM</span><div style="height: 14px; width: 30%; background: #D6A64A; border-radius: 14px;"></div></div>
+<span style="font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: .09em; color: #A9B3C4;">PICTURE ONLY · NOT TO SCALE</span>
+</div>
+</div>
+</section>
+
+<!-- Close -->
+<section id="close" class="sec" style="position: relative; overflow: hidden; background: #0F1B2F; padding: 112px 0;">
+<div style="position: absolute; right: -200px; bottom: -280px; width: 760px; height: 760px; border-radius: 50%; background: radial-gradient(closest-side, rgba(214,166,74,.22), rgba(214,166,74,0));" aria-hidden="true"></div>
+<div class="wrap" style="position: relative; display: flex; flex-direction: column; gap: 26px; align-items: flex-start;">
+<h2 class="hxl" style="margin: 0; font-family: Jost, sans-serif; font-weight: 500; font-size: 54px; line-height: 1.04; letter-spacing: -0.025em; max-width: 900px;">Your whole development, from land to brand to business value, run as one.</h2>
+<p style="margin: 0; font-family: Jost, sans-serif; font-size: 26px; line-height: 1.35; color: #E4DCCB; max-width: 820px;">Start with one stage, on a real project, and see it work week by week. Add the next when you are ready. Would it be a bad idea to try one?</p>
+<a href="#close" style="color: #0C1626; background: #D6A64A; text-decoration: none; font-weight: 600; border-radius: 999px; padding: 16px 26px;">Ask your Metadology associate for a walkthrough</a>
+</div>
+</section>
+
+<footer class="wrap" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; padding-top: 28px; padding-bottom: 28px; border-top: 1.5px solid #1D2C44;">
+<img src="/_blob/d2b7509f808bfab0319b785bd9941150" alt="metadology" style="width: 120px; height: auto; display: block;">
+<span style="font-family: 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; font-size: 11px; color: #A9B3C4;">From land to brand to business value, and beyond</span>
+<a href="Main.dc.html#close" style="color: #0C1626; background: #D6A64A; text-decoration: none; font-weight: 600; border-radius: 999px; padding: 12px 20px;">Ask your Metadology associate for a walkthrough</a>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":10200}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const cur = 0;
+    const names = ['Pre-flight', 'Take-off', 'Climb', 'Launch', 'Cruise', 'Navigation', 'Landing', 'Next flight'];
+    const files = ['PreFlight', 'TakeOff', 'Climb', 'Launch', 'Cruise', 'Navigation', 'Landing', 'NextFlight'];
+    const angles = [0, 7, 13, 20, 26, 32, 39, 45];
+    const meanings = ['Brand and plan', 'Website and funnels', 'Finding buyers', 'Queue and race', 'Sales and momentum', '3D and one record', 'Close and transfer', 'After sales'];
+    const track = names.map((n, i) => ({
+      name: n, meaning: meanings[i], file: files[i] + '.dc.html', ang: angles[i], here: i === cur,
+      dot: '#1D2C44', lineL: i === 0 ? 'transparent' : '#1D2C44', lineR: i === names.length - 1 ? 'transparent' : '#1D2C44',
+      fg: '#A9B3C4'
+    }));
+    const heads = ['Brand strategy, buyer research, positioning and the plan', 'Your brand on every screen, street, table and online channel', 'Strategic marketing triggers, ads, listings and open numbers', 'Prop Launch: build the queue, then run the launch race', 'Prop Manager, and content that keeps the momentum going', 'Your whole development in 3D, and one record for the build', 'Every deal closed, transferred and handed over', 'After sales, buyer data and lessons for the next launch'];
+    const headsOld = ['Buyer research, positioning and brand', 'Your brand on every screen, street, table and online channel', 'Ads, listings and open numbers that bring the right buyers in', 'Prop Launch: build the queue, then run the launch race', 'Prop Manager, and content that keeps the momentum going', 'Your whole development in 3D, and one record for the build', 'Every deal followed through to transfer and handover', 'Buyer data and lessons that make your next launch faster'];
+    const roi = ['Pricing set by evidence, not hope', 'Higher perceived value, firmer prices', 'A lower cost per sale', 'More units sold in the first days', 'Sales keep moving after launch', 'Problems found on screen, not on site', 'Money in the bank sooner', 'Better margins, launch after launch'];
+    const stages = names.map((n, i) => ({ no: '0' + (i + 1), flight: n, name: heads[i], roi: roi[i], file: files[i] + '.dc.html' }));
+    const forces = [
+      { name: 'Thrust', line: 'Momentum gained from one integrated, holistic solution that serves the developer.', bg: '#13223A', fg: '#F2EDE2' },
+      { name: 'Lift', line: 'Marketing power and visual awareness that create a place buyers want to buy.', bg: '#13223A', fg: '#F2EDE2' },
+      { name: 'Drag', line: 'Friction: guesswork, rework and paper pushed between separate suppliers. That is the old route.', bg: '#E4DCCB', fg: '#0C1626' },
+      { name: 'Weight', line: 'Briefing every supplier yourself and steering the project alone.', bg: '#E4DCCB', fg: '#0C1626' }
+    ];
+    const chainRaw = [['Land', 'Built in 3D'], ['Brand', 'Positioned'], ['Buyers', 'Found'], ['Launch', 'Sold fast'], ['Sales', 'Kept moving'], ['Build', 'On record'], ['Transfer', 'Money in'], ['Business value', 'And beyond']];
+    const chain = chainRaw.map((c, i) => ({ t: c[0], v: c[1], bg: i === chainRaw.length - 1 ? '#D6A64A' : '#13223A', fg: i === chainRaw.length - 1 ? '#0C1626' : '#F2EDE2' }));
+    return { track, readout: 'ON THE RUNWAY · THE WHOLE JOURNEY', stages, forces, chain };
+  }
+}
+</script>
+</body>
+</html>
